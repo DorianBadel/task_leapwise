@@ -10,7 +10,7 @@ $color-white: #fff;
 $color-red: #ff3939;
 
 // Typography
-$font-family-default: "Instrument sans", sans-serif;
+$font-family-default: "Instrument Sans Variable", sans-serif;
 
 @mixin typography(
   $font-weight,
@@ -27,21 +27,21 @@ $font-family-default: "Instrument sans", sans-serif;
 
 .heading__text {
   &-l {
-    @include typography("bold", 64px, 100%);
+    @include typography(bold, 64px, 100%);
   }
   &-m {
-    @include typography("bold", 32px, 150%);
+    @include typography(bold, 32px, 150%);
   }
   &-s {
-    @include typography("bold", 16px, 150%);
+    @include typography(bold, 16px, 150%);
   }
 }
 
 .body__text {
   &-m {
-    @include typography("regular", 16px, 150%);
+    @include typography(regular, 16px, 150%);
   }
   &-s {
-    @include typography("regular", 12px, 150%);
+    @include typography(regular, 12px, 150%);
   }
 }

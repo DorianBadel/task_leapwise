@@ -2,14 +2,12 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 import "./../styles/css/components/Buttons.css";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  primary?: boolean;
   secondary?: boolean;
   children: ReactNode;
   onClick: () => void;
 };
 
 function Button({
-  primary = false,
   secondary = false,
   onClick,
   children,
@@ -17,9 +15,7 @@ function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`button ${
-        primary ? "button-primary" : secondary && "button-secondary"
-      }`}
+      className={`${secondary ? "button-secondary" : "button-primary"}`}
       onClick={onClick}
       {...other}
     >

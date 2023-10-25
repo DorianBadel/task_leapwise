@@ -1,4 +1,5 @@
 import Button from "./components/Button";
+import TabGroup from "./components/TabGroup";
 
 function ComponentList() {
   return (
@@ -9,6 +10,14 @@ function ComponentList() {
       <Button onClick={() => {}} secondary>
         Button
       </Button>
+
+      <TabGroup
+        tabs={[
+          { lable: "Tab 1", onClick: () => {} },
+          { lable: "Tab 2", onClick: () => {} },
+          { lable: "Tab 3", onClick: () => {} },
+        ]}
+      />
     </>
   );
 }

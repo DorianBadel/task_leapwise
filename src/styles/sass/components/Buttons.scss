@@ -5,17 +5,36 @@
   $shadow: none,
   $disabled-color: global.$color-secondary,
   $color: global.$color-white,
-  $background: global.$color-primary
+  $background: global.$color-primary,
+  $hover-color: $color,
+  $hover-background: global.$color-primary-hover,
+  $active-background: none
 ) {
   border: $border;
   color: $color;
   background: $background;
 
-  &:not(:disabled) {
-    &:hover,
-    &:focus,
-    &:active {
-      box-shadow: $shadow;
+  @if $active-background != none {
+    &:not(:disabled) {
+      &:active,
+      &:focus {
+        background: $active-background;
+        color: $hover-color;
+      }
+      &:hover {
+        box-shadow: $shadow;
+        color: $hover-color;
+      }
+    }
+  } @else {
+    &:not(:disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: $shadow;
+        color: $hover-color;
+        background: $hover-background;
+      }
     }
   }
 
@@ -25,7 +44,8 @@
 }
 
 .button-primary,
-.button-secondary {
+.button-secondary,
+.button-tab {
   display: flex;
   padding: 11px 27px;
   align-items: center;
@@ -42,9 +62,6 @@
     &:hover,
     &:focus,
     &:active {
-      background: global.$color-primary-hover;
-      // The sketch shows a shadow only on primary buttons but I think it looks better on both
-      box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
       cursor: pointer;
     }
   }
@@ -55,13 +72,23 @@
 }
 
 .button-primary {
-  @include buttonStyle();
+  @include buttonStyle($shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25));
 }
 
 .button-secondary {
   @include buttonStyle(
     $border: 1px solid global.$color-primary,
     $color: global.$color-primary,
-    $background: global.$color-light-grey
+    $background: global.$color-light-grey,
+    $shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25)
+  );
+}
+
+.button-tab {
+  @include buttonStyle(
+    $color: global.$color-grey,
+    $background: global.$color-white,
+    $hover-color: global.$color-primary,
+    $active-background: global.$color-primary-hover
   );
 }

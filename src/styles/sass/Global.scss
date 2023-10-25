@@ -1,0 +1,47 @@
+// Colors
+$color-primary: #633cff;
+$color-primary-hover: #beadff;
+$color-secondary: #efebff;
+$color-dark-grey: #333;
+$color-grey: #737373;
+$color-borders: #d9d9d9;
+$color-light-grey: #fafafa;
+$color-white: #fff;
+$color-red: #ff3939;
+
+// Typography
+$font-family-default: "Instrument sans", sans-serif;
+
+@mixin typography(
+  $font-weight,
+  $font-size,
+  $line-height,
+  $color: $color-dark-grey,
+  $font-family: $font-family-default
+) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+.heading__text {
+  &-l {
+    @include typography("bold", 64px, 100%);
+  }
+  &-m {
+    @include typography("bold", 32px, 150%);
+  }
+  &-s {
+    @include typography("bold", 16px, 150%);
+  }
+}
+
+.body__text {
+  &-m {
+    @include typography("regular", 16px, 150%);
+  }
+  &-s {
+    @include typography("regular", 12px, 150%);
+  }
+}

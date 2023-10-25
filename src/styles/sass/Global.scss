@@ -10,14 +10,23 @@ $color-white: #fff;
 $color-red: #ff3939;
 
 // Typography
-$font-family-default: "Instrument Sans Variable", sans-serif;
+$text-font-default: "Instrument Sans Variable", sans-serif;
+$text-weight-bold: 700;
+$text-weight-medium: 600;
+$text-weight-regular: 400;
+$text-size-xl: 64px;
+$text-size-l: 32px;
+$text-size-m: 16px;
+$text-size-s: 12px;
+$text-line-height-default: 150%;
+$text-line-height-small: 100%;
 
 @mixin typography(
   $font-weight,
   $font-size,
-  $line-height,
+  $line-height: $text-line-height-default,
   $color: $color-dark-grey,
-  $font-family: $font-family-default
+  $font-family: $text-font-default
 ) {
   font-family: $font-family;
   font-weight: $font-weight;
@@ -27,21 +36,25 @@ $font-family-default: "Instrument Sans Variable", sans-serif;
 
 .heading__text {
   &-l {
-    @include typography(bold, 64px, 100%);
+    @include typography(
+      $text-weight-bold,
+      $text-size-xl,
+      $text-line-height-small
+    );
   }
   &-m {
-    @include typography(bold, 32px, 150%);
+    @include typography($text-weight-bold, $text-size-l);
   }
   &-s {
-    @include typography(bold, 16px, 150%);
+    @include typography($text-weight-bold, $text-size-m);
   }
 }
 
 .body__text {
   &-m {
-    @include typography(regular, 16px, 150%);
+    @include typography($text-weight-regular, $text-size-m);
   }
   &-s {
-    @include typography(regular, 12px, 150%);
+    @include typography($text-weight-regular, $text-size-s);
   }
 }

@@ -1,0 +1,33 @@
+@use "../Global.scss" as global;
+
+.button {
+  display: flex;
+  padding: 11px 27px;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+
+  color: global.$color-white;
+  background: global.$color-primary;
+  font-weight: global.$text-weight-medium;
+  font-size: global.$text-size-m;
+  font-family: global.$text-font-default;
+
+  transition: all 0.2s ease-in-out;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus,
+    &:active {
+      background: global.$color-primary-hover;
+      box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+      cursor: pointer;
+    }
+  }
+
+  &:disabled {
+    background: global.$color-secondary;
+    cursor: not-allowed;
+  }
+}

@@ -51,6 +51,7 @@
   align-items: center;
   gap: 8px;
   border-radius: 8px;
+  justify-content: center;
 
   font-weight: global.$text-weight-medium;
   font-size: global.$text-size-m;
@@ -72,7 +73,9 @@
 }
 
 .button-primary {
-  @include buttonStyle($shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25));
+  @include buttonStyle(
+    $shadow: 0px 0px 32px 0px global.$color-primary-transparent
+  );
 }
 
 .button-secondary {
@@ -80,7 +83,7 @@
     $border: 1px solid global.$color-primary,
     $color: global.$color-primary,
     $background: global.$color-light-grey,
-    $shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25)
+    $shadow: 0px 0px 32px 0px global.$color-primary-transparent
   );
 }
 

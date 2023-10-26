@@ -1,5 +1,6 @@
 // Colors
 $color-primary: #633cff;
+$color-primary-transparent: rgba(99, 60, 255, 0.25);
 $color-primary-hover: #beadff;
 $color-secondary: #efebff;
 $color-dark-grey: #333;
@@ -8,6 +9,7 @@ $color-borders: #d9d9d9;
 $color-light-grey: #fafafa;
 $color-white: #fff;
 $color-red: #ff3939;
+$color-red-transparent: rgba(255, 57, 57, 0.25);
 
 // Typography
 $text-font-default: "Instrument Sans Variable", sans-serif;
@@ -15,6 +17,7 @@ $text-weight-bold: 700;
 $text-weight-medium: 600;
 $text-weight-regular: 400;
 $text-size-xl: 64px;
+$text-size-logo: 40px;
 $text-size-l: 32px;
 $text-size-m: 16px;
 $text-size-s: 12px;
@@ -32,6 +35,7 @@ $text-line-height-small: 100%;
   font-weight: $font-weight;
   font-size: $font-size;
   line-height: $line-height;
+  color: $color-dark-grey; //Standard for now
 }
 
 .heading__text {
@@ -56,5 +60,35 @@ $text-line-height-small: 100%;
   }
   &-s {
     @include typography($text-weight-regular, $text-size-s);
+  }
+}
+
+$screen-tablet: "max-width: 768px";
+$screen-mobile: "max-width: 375px";
+
+body {
+  background: $color-light-grey;
+  margin: 0px;
+
+  @media ($screen-mobile) {
+    background: $color-white;
+  }
+}
+
+//modifiers
+.text-gray {
+  color: $color-grey;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-link {
+  color: $color-primary;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $color-primary-hover;
   }
 }

@@ -3,18 +3,21 @@
   font-weight: 700;
   font-size: 64px;
   line-height: 100%;
+  color: #333;
 }
 .heading__text-m {
   font-family: "Instrument Sans Variable", sans-serif;
   font-weight: 700;
   font-size: 32px;
   line-height: 150%;
+  color: #333;
 }
 .heading__text-s {
   font-family: "Instrument Sans Variable", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 150%;
+  color: #333;
 }
 
 .body__text-m {
@@ -22,12 +25,41 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+  color: #333;
 }
 .body__text-s {
   font-family: "Instrument Sans Variable", sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
+  color: #333;
+}
+
+body {
+  background: #fafafa;
+  margin: 0px;
+}
+@media (max-width: 375px) {
+  body {
+    background: #fff;
+  }
+}
+
+.text-gray {
+  color: #737373;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-link {
+  color: #633cff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.text-link:hover {
+  color: #beadff;
 }
 
 .button-primary,
@@ -38,6 +70,7 @@
   align-items: center;
   gap: 8px;
   border-radius: 8px;
+  justify-content: center;
   font-weight: 600;
   font-size: 16px;
   font-family: "Instrument Sans Variable", sans-serif;

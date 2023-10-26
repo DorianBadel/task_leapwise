@@ -62,4 +62,20 @@ body {
   color: #beadff;
 }
 
-/*# sourceMappingURL=Global.css.map */
+.card {
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-radius: 12px;
+  background: #fff;
+}
+@media (max-width: 375px) {
+  .card {
+    padding: 0px;
+    background-color: transparent;
+  }
+}
+
+/*# sourceMappingURL=Card.css.map */

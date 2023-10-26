@@ -53,4 +53,26 @@ body {
   color: #beadff;
 }
 
-/*# sourceMappingURL=Global.css.map */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 51px;
+}
+
+.logo__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
+}
+
+/*# sourceMappingURL=Login.css.map */

@@ -53,4 +53,13 @@ body {
   color: #beadff;
 }
 
-/*# sourceMappingURL=Global.css.map */
+.card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/*# sourceMappingURL=Card.css.map */

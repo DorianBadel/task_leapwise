@@ -15,6 +15,7 @@ $text-weight-bold: 700;
 $text-weight-medium: 600;
 $text-weight-regular: 400;
 $text-size-xl: 64px;
+$text-size-logo: 40px;
 $text-size-l: 32px;
 $text-size-m: 16px;
 $text-size-s: 12px;
@@ -32,6 +33,7 @@ $text-line-height-small: 100%;
   font-weight: $font-weight;
   font-size: $font-size;
   line-height: $line-height;
+  color: $color-dark-grey; //Standard for now
 }
 
 .heading__text {
@@ -56,5 +58,24 @@ $text-line-height-small: 100%;
   }
   &-s {
     @include typography($text-weight-regular, $text-size-s);
+  }
+}
+
+body {
+  background: $color-light-grey;
+  margin: 0px;
+}
+
+//modifiers
+.text-gray {
+  color: $color-grey;
+}
+
+.text-link {
+  color: $color-primary;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: $color-primary-hover;
   }
 }

@@ -1,0 +1,19 @@
+@use "../Global.scss" as global;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 51px;
+}
+
+.logo__text {
+  @include global.typography(global.$text-weight-bold, global.$text-size-logo);
+}

@@ -4,6 +4,9 @@ import "./../styles/css/components/Buttons.css";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   secondary?: boolean;
   children: ReactNode;
+};
+
+type ButtonOnClickProps = ButtonProps & {
   onClick: () => void;
 };
 
@@ -12,7 +15,7 @@ function Button({
   onClick,
   children,
   ...other
-}: ButtonProps) {
+}: ButtonProps | ButtonOnClickProps) {
   return (
     <button
       className={`${secondary ? "button-secondary" : "button-primary"}`}

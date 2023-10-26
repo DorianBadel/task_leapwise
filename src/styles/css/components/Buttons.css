@@ -76,7 +76,6 @@ body {
   display: flex;
   padding: 11px 27px;
   align-items: center;
-  gap: 8px;
   border-radius: 8px;
   justify-content: center;
   font-weight: 600;
@@ -142,6 +141,10 @@ body {
 }
 .button-tab:disabled {
   background: #efebff;
+}
+.button-tab-selected {
+  color: #633cff;
+  background: #beadff;
 }
 
 /*# sourceMappingURL=Buttons.css.map */

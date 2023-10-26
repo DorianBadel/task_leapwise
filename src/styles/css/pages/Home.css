@@ -71,10 +71,16 @@ body {
 }
 
 .home__wrapper {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home__wrapper-inner {
+  height: 100%;
   padding: 24px;
   display: grid;
   grid-template-columns: 5fr 8fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 10% 80%;
   gap: 24px;
 }
 
@@ -84,12 +90,59 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 24px;
+  align-items: center;
+}
+
+.links__container {
+  background-color: #fafafa;
+  width: 100%;
+  height: auto;
 }
 
 .card__body-right,
 .card__body-left {
   width: auto;
-  height: 100%;
+}
+
+.card__body-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0px;
+  gap: 0px;
+}
+
+.right__container-top {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.right__title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.right__body-top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.right__body-bottom {
+  display: flex;
+  justify-content: end;
+  border-top: 1px solid #d9d9d9;
+  padding: 24px 40px;
+}
+
+.instruction__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=Home.css.map */

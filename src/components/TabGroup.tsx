@@ -5,11 +5,22 @@ type TabType = {
   onClick: () => void;
 };
 
-function TabGroup({ tabs }: { tabs: TabType[] }) {
+function TabGroup({
+  tabs,
+  initialActiveIndex = 0,
+}: {
+  tabs: TabType[];
+  initialActiveIndex?: number;
+}) {
   return (
     <div className="tab__container">
-      {tabs.map((tab) => (
-        <button className="button-tab" onClick={tab.onClick}>
+      {tabs.map((tab, key) => (
+        <button
+          className={`button-tab ${
+            initialActiveIndex === key && "button-tab-selected"
+          }`}
+          onClick={tab.onClick}
+        >
           {tab.lable}
         </button>
       ))}

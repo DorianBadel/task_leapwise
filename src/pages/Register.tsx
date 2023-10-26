@@ -1,5 +1,5 @@
 import Card from "../components/Card";
-import "../styles/css/pages/Login.css";
+import "../styles/css/pages/AuthStyles.css";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import Input from "../components/Input";

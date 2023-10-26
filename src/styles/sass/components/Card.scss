@@ -1,10 +1,16 @@
 @use "../Global.scss" as global;
 
 .card {
+  width: 100%;
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 40px;
   border-radius: 12px;
   background: global.$color-white;
+
+  @media (global.$screen_mobile) {
+    padding: 0px;
+    background-color: transparent;
+  }
 }

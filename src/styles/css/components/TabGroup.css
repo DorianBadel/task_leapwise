@@ -39,6 +39,11 @@ body {
   background: #fafafa;
   margin: 0px;
 }
+@media (max-width: 375px) {
+  body {
+    background: #fff;
+  }
+}
 
 .text-gray {
   color: #737373;

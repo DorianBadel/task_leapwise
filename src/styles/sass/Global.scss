@@ -63,9 +63,16 @@ $text-line-height-small: 100%;
   }
 }
 
+$screen-tablet: "max-width: 768px";
+$screen-mobile: "max-width: 375px";
+
 body {
   background: $color-light-grey;
   margin: 0px;
+
+  @media ($screen-mobile) {
+    background: $color-white;
+  }
 }
 
 //modifiers

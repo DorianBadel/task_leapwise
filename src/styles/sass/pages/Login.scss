@@ -12,6 +12,11 @@
   flex-direction: column;
   align-items: center;
   gap: 51px;
+
+  @media (global.$screen-mobile) {
+    padding: 32px;
+    align-items: start;
+  }
 }
 
 .logo__text {

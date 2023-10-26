@@ -44,6 +44,7 @@ function Login() {
                     message: "Incorrect format",
                   },
                 }}
+                autoComplete="email"
               />
               <Input
                 label="Password"
@@ -56,6 +57,7 @@ function Login() {
                   required: { value: true, message: "Password is required" },
                   minLength: { value: 8, message: "Please check again" },
                 }}
+                autoComplete="current-password"
               />
               <Button type="submit">Submit</Button>
             </form>

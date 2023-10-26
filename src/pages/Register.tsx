@@ -48,6 +48,7 @@ function Register() {
                     message: "Incorrect format",
                   },
                 }}
+                autoComplete="new-email"
               />
               <Input
                 label="Create password"
@@ -60,6 +61,7 @@ function Register() {
                   required: { value: true, message: "Password is required" },
                   minLength: { value: 8, message: "Please check again" },
                 }}
+                autoComplete="new-password"
               />
               <Input
                 label="Confirm password"
@@ -72,6 +74,7 @@ function Register() {
                   required: { value: true, message: "Password is required" },
                   minLength: { value: 8, message: "Please check again" },
                 }}
+                autoComplete="new-password"
               />
               <span className="body__text-m text-gray">
                 Password must contain at least 8 characters

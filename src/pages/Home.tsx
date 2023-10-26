@@ -3,7 +3,6 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import TabGroup from "../components/TabGroup";
 import "./../styles/css/pages/Home.css";
-
 function Home() {
   const [selectedTab, setSelectedTab] = useState(0);
   return (

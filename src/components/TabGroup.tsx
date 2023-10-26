@@ -16,6 +16,7 @@ function TabGroup({
     <div className="tab__container">
       {tabs.map((tab, key) => (
         <button
+          key={key}
           className={`button-tab ${
             initialActiveIndex === key && "button-tab-selected"
           }`}

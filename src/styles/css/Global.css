@@ -35,6 +35,14 @@
   color: #333;
 }
 
+.logo__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
+}
+
 body {
   background: #fafafa;
   margin: 0px;

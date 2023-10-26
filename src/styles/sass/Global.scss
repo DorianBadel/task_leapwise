@@ -63,6 +63,10 @@ $text-line-height-small: 100%;
   }
 }
 
+.logo__text {
+  @include typography($text-weight-bold, $text-size-logo);
+}
+
 $screen-tablet: "max-width: 768px";
 $screen-mobile: "max-width: 375px";
 

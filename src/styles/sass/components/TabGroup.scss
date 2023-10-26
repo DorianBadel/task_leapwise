@@ -2,13 +2,8 @@
 
 .tab__container {
   display: flex;
-  padding: 32px;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
   gap: 16px;
-  align-self: stretch;
 
   border-radius: 12px;
-  background: global.$color-light-grey;
 }

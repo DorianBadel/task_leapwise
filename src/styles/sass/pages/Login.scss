@@ -17,3 +17,9 @@
 .logo__text {
   @include global.typography(global.$text-weight-bold, global.$text-size-logo);
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

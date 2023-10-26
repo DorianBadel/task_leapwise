@@ -10,7 +10,11 @@ const onSubmit: SubmitHandler<FieldValues> = (data) => {
 };
 
 function Login() {
-  const { register, handleSubmit } = useForm<FieldValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>();
 
   return (
     <div className="wrapper">
@@ -32,18 +36,30 @@ function Login() {
                 name="email"
                 placeholder="e.g. alex@email.com"
                 register={register}
-                required
+                error={errors.email?.type as string}
+                validation={{
+                  required: { value: true, message: "Can't be empty" },
+                  pattern: {
+                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: "Incorrect format",
+                  },
+                }}
               />
               <Input
-                label="password"
+                label="Password"
                 name="password"
+                type="password"
                 placeholder="Enter your password"
+                error={errors.password?.type as string}
                 register={register}
-                required
+                validation={{
+                  required: { value: true, message: "Password is required" },
+                  minLength: { value: 8, message: "Please check again" },
+                }}
               />
               <Button type="submit">Submit</Button>
             </form>
-            <p className="body__text-m text-gray">
+            <p className="body__text-m text-gray text-center">
               Don't have an account?{" "}
               <Link to="/register" className="body__text-m text-link">
                 Create account

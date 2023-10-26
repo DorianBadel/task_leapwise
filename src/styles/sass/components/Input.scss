@@ -1,0 +1,63 @@
+@use "../Global.scss" as global;
+
+@mixin inputBorder($isError) {
+  @if $isError {
+    border-color: global.$color-red;
+
+    &:focus {
+      border-color: global.$color-red;
+      box-shadow: 0px 0px 32px 0px global.$color-red-transparent;
+    }
+    &:hover {
+      border-color: global.$color-red;
+    }
+  } @else {
+    &:focus {
+      border-color: global.$color-primary;
+      box-shadow: 0px 0px 32px 0px global.$color-primary-transparent;
+    }
+
+    &:hover {
+      border-color: global.$color-primary;
+    }
+  }
+}
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+
+  & input {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid global.$color-borders;
+    background: global.$color-white;
+
+    font-size: global.$text-size-m;
+    font-weight: global.$text-weight-regular;
+
+    outline: none;
+    transition: all 0.2s ease-in-out;
+
+    &:not(.error) {
+      @include inputBorder(false);
+    }
+
+    &.error {
+      @include inputBorder(true);
+    }
+  }
+
+  & label.error {
+    color: global.$color-red;
+  }
+
+  & .error-message {
+    color: global.$color-red;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+  }
+}

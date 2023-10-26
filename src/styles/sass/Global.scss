@@ -1,5 +1,6 @@
 // Colors
 $color-primary: #633cff;
+$color-primary-transparent: rgba(99, 60, 255, 0.25);
 $color-primary-hover: #beadff;
 $color-secondary: #efebff;
 $color-dark-grey: #333;
@@ -8,6 +9,7 @@ $color-borders: #d9d9d9;
 $color-light-grey: #fafafa;
 $color-white: #fff;
 $color-red: #ff3939;
+$color-red-transparent: rgba(255, 57, 57, 0.25);
 
 // Typography
 $text-font-default: "Instrument Sans Variable", sans-serif;
@@ -69,6 +71,10 @@ body {
 //modifiers
 .text-gray {
   color: $color-grey;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-link {

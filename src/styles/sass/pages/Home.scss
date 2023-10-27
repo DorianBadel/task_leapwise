@@ -23,6 +23,10 @@
   align-items: center;
 }
 
+.article__right-form {
+  flex: 1;
+}
+
 .home__article {
   &-l,
   &-r {
@@ -99,6 +103,19 @@
   justify-content: center;
   align-items: center;
   background-color: global.$color-light-grey;
+
+  &-wrapper {
+    overflow-y: scroll;
+    flex-grow: 0;
+    height: 500px;
+
+    &-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
 }
 
 .link__input-text {

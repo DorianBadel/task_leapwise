@@ -35,6 +35,11 @@ export const getSelectOptions = (filter?: string) => {
   return options;
 };
 
+export type linkInputT = {
+  order: number;
+  value: string;
+  icon: React.ReactElement;
+};
 export type linkItemT = {
   order: number;
   platformName: string;

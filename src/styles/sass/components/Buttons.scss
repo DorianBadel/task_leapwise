@@ -86,6 +86,7 @@
   );
 }
 
+//TODO move this to TabGroup.scss
 .button-tab {
   @include buttonStyle(
     $color: global.$color-grey,
@@ -97,5 +98,18 @@
   &-selected {
     color: global.$color-primary;
     background: global.$color-primary-hover;
+  }
+
+  &:has(.tab__icon) {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      fill: currentColor;
+      width: 20px;
+      height: 20px;
+    }
   }
 }

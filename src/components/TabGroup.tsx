@@ -3,6 +3,7 @@ import "../styles/css/components/TabGroup.css";
 type TabType = {
   lable: string;
   onClick: () => void;
+  icon?: React.ReactNode;
 };
 
 function TabGroup({
@@ -22,6 +23,7 @@ function TabGroup({
           }`}
           onClick={tab.onClick}
         >
+          {tab.icon && <span className="tab__icon">{tab.icon}</span>}
           {tab.lable}
         </button>
       ))}

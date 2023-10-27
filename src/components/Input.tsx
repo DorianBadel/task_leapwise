@@ -13,6 +13,8 @@ type ValidationType = {
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
   label: string;
+  name: string;
+  icon?: React.ReactNode;
   register: UseFormRegister<FieldValues>;
   validation?: ValidationType;
   error?: keyof ValidationType | string;
@@ -20,6 +22,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({
   label,
+  icon,
   name,
   register,
   validation,
@@ -33,6 +36,8 @@ const Input: React.FC<InputProps> = ({
       <label htmlFor={name} className={`body__text-s ${error ? "error" : ""}`}>
         {label}
       </label>
+
+      {icon && <span className="input__icon">{icon}</span>}
       <input
         {...register(name || "", validation)}
         {...rest}

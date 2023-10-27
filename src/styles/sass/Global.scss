@@ -67,6 +67,7 @@ $text-line-height-small: 100%;
   @include typography($text-weight-bold, $text-size-logo);
 }
 
+// Breakpoints
 $screen-tablet: "max-width: 768px";
 $screen-mobile: "max-width: 375px";
 
@@ -76,6 +77,17 @@ body {
 
   @media ($screen-mobile) {
     background: $color-white;
+  }
+}
+
+// Logotype
+.logotype {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  &__text {
+    @include typography($text-weight-bold, $text-size-logo);
   }
 }
 

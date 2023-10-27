@@ -53,6 +53,19 @@ body {
   }
 }
 
+.logotype {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.logotype__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
+}
+
 .text-gray {
   color: #737373;
 }
@@ -145,6 +158,17 @@ body {
 .button-tab-selected {
   color: #633cff;
   background: #beadff;
+}
+.button-tab:has(.tab__icon) {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+.button-tab:has(.tab__icon) svg {
+  fill: currentColor;
+  width: 20px;
+  height: 20px;
 }
 
 /*# sourceMappingURL=Buttons.css.map */

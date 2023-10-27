@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import EmailIcon from "../assets/icons/Email.svg";
+import PasswordIcon from "../assets/icons/Password.svg";
+import Logotype from "../assets/icons/Logotype";
 
 const onSubmit: SubmitHandler<FieldValues> = (data) => {
   if (data.password !== data.passwordConfirm) {
@@ -23,9 +26,7 @@ function Register() {
   return (
     <div className="wrapper">
       <div className="login__container">
-        <div className="login__logo">
-          <span className="logo__text">Linkwise</span>
-        </div>
+        <Logotype />
         <Card>
           <div className="login__header">
             <div className="heading__text-m">Create account</div>
@@ -38,6 +39,7 @@ function Register() {
               <Input
                 label="Email address"
                 name="email"
+                icon={<EmailIcon />}
                 placeholder="e.g. alex@email.com"
                 register={register}
                 error={errors.email?.type as string}
@@ -54,6 +56,7 @@ function Register() {
                 label="Create password"
                 name="password"
                 type="password"
+                icon={<PasswordIcon />}
                 placeholder="At least 8 characters"
                 error={errors.password?.type as string}
                 register={register}
@@ -67,6 +70,7 @@ function Register() {
                 label="Confirm password"
                 name="passwordConfirm"
                 type="password"
+                icon={<PasswordIcon />}
                 placeholder="At least 8 characters"
                 error={errors.passwordConfirm?.type as string}
                 register={register}

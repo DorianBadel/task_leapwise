@@ -14,18 +14,20 @@ const allPlatforms: Array<platformT> = Object.entries(platformIcons).map(
   })
 );
 
-export const getSelectOptions = (selected?: string) => {
+export const getSelectOptions = (filter?: string) => {
   const options = allPlatforms.map((platform) => ({
     value: platform.name,
     label: platform.name,
     icon: platform.icon,
   }));
-  if (selected) {
-    return options
-      .filter((option) => option.value !== selected)
-      .filter((option) =>
-        option.value.toLowerCase().includes(selected.toLowerCase())
-      );
+  if (filter) {
+    return (
+      options
+        // .filter((option) => option.value !== filter) // in case I want to remove the selected one
+        .filter((option) =>
+          option.value.toLowerCase().includes(filter.toLowerCase())
+        )
+    );
   }
   return options;
 };

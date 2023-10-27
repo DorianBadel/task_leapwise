@@ -90,3 +90,17 @@
   border-top: 1px solid global.$color-borders;
   padding: 24px 40px;
 }
+
+.link__container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  background-color: global.$color-light-grey;
+}
+
+.link__input-text {
+  width: 100% !important;
+}

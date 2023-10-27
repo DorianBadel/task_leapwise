@@ -84,6 +84,10 @@ body {
   color: #beadff;
 }
 
+.select {
+  width: 100%;
+}
+
 .input__icon-platform {
   transform: translateY(-50%) !important;
 }
@@ -117,7 +121,11 @@ body {
   padding: 12px 16px;
   display: flex;
   flex-direction: column;
+  z-index: 1;
+  position: absolute;
+  width: calc(100% - 34px);
   gap: 12px;
+  top: 80%;
 }
 .select__dropdown hr {
   background: #d9d9d9;

@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { getSelectOptions } from "../data";
 import "../styles/css/components/Select.css";
 import "../styles/css/components/Input.css";
 import DropdownArrowIcon from "../assets/icons/DropdownArrow.svg";
+import { selectOptionT } from "../data";
 
-function Select() {
+function Select({
+  options,
+  selectedOption,
+  onSelect,
+}: {
+  options: selectOptionT[];
+  selectedOption: selectOptionT;
+  onSelect: (arg: selectOptionT) => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const filteredOptions = getSelectOptions();
-  const [selectedOption, setSelectedOption] = useState({
-    value: filteredOptions[0].value,
-    icon: filteredOptions[0].icon,
-  });
 
   return (
     <div className="select">
@@ -38,33 +41,32 @@ function Select() {
         <span className={`input__icon-arrow ${isOpen ? "open" : ""}`}>
           <DropdownArrowIcon />
         </span>
-      </div>
 
-      {isOpen && (
-        <ul className="select__dropdown">
-          {filteredOptions.map((option, key) => (
-            <a
-              key={key}
-              onClick={() => {
-                setSelectedOption({ value: option.value, icon: option.icon });
-                setIsOpen(false);
-              }}
-            >
-              <li
-                key={option.value}
-                className={`${
-                  option.value === selectedOption.value ? "selected" : ""
-                }`}
+        {isOpen && (
+          <ul className="select__dropdown ">
+            {options.map((option, key) => (
+              <a
+                key={key}
+                onClick={() => {
+                  onSelect(option);
+                  setIsOpen(false);
+                }}
               >
-                <div className="select__dropdown-icon">{option.icon}</div>
-                <div className="select__dropdown-label">{option.value}</div>
-              </li>
-              {option.value !=
-                filteredOptions[filteredOptions.length - 1].value && <hr />}
-            </a>
-          ))}
-        </ul>
-      )}
+                <li
+                  key={option.value}
+                  className={`${
+                    option.value === selectedOption.value ? "selected" : ""
+                  }`}
+                >
+                  <div className="select__dropdown-icon">{option.icon}</div>
+                  <div className="select__dropdown-label">{option.value}</div>
+                </li>
+                {option.value != options[options.length - 1].value && <hr />}
+              </a>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

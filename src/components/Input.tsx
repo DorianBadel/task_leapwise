@@ -17,6 +17,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
   icon?: React.ReactNode;
   register: UseFormRegister<FieldValues>;
   validation?: ValidationType;
+  className?: string;
   error?: keyof ValidationType | string;
 }
 
@@ -27,12 +28,13 @@ const Input: React.FC<InputProps> = ({
   register,
   validation,
   error,
+  className = "",
   ...rest
 }) => {
   const errorType = Object.keys(validation || {});
 
   return (
-    <div className="input__container">
+    <div className={`input__container ${className}`}>
       <label htmlFor={name} className={`body__text-s ${error ? "error" : ""}`}>
         {label}
       </label>

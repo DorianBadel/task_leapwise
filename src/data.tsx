@@ -8,12 +8,16 @@ type platformT = {
 
 const allPlatforms: Array<platformT> = Object.entries(platformIcons).map(
   ([key, icon]) => ({
-    name: key,
+    name: key.replace("_", "."),
     icon: icon(),
     validation: new RegExp(`^${key}\\.com$`),
   })
 );
 
+export type selectOptionT = {
+  value: string;
+  icon: React.ReactElement;
+};
 export const getSelectOptions = (filter?: string) => {
   const options = allPlatforms.map((platform) => ({
     value: platform.name,

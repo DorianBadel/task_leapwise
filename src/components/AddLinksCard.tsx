@@ -1,10 +1,30 @@
+import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import LinkInstructionSVG from "../assets/LinkInstructionSVG";
 import Button from "./Button";
 import Card from "./Card";
+import Input from "./Input";
 import Select from "./Select";
+import { getSelectOptions } from "../data";
+import { useState } from "react";
 
+const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  alert(JSON.stringify(data));
+};
 function AddLinksCard() {
+  const filteredOptions = getSelectOptions();
+  const [selectedOption, setSelectedOption] = useState({
+    value: filteredOptions[0].value,
+    icon: filteredOptions[0].icon,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>();
+
   const hasLinks = true;
+
   return (
     <Card className="home__article-r">
       <div className="right__container">
@@ -33,7 +53,33 @@ function AddLinksCard() {
               </div>
             </div>
           ) : (
-            <Select />
+            <form onSubmit={handleSubmit(onSubmit)} className="link__container">
+              <Select
+                options={filteredOptions}
+                selectedOption={selectedOption}
+                onSelect={setSelectedOption}
+              />
+              <Input
+                className="link__input-text"
+                label="Link"
+                name="linkInput"
+                register={register}
+                error={errors.linkInput?.type as string}
+                validation={{
+                  required: {
+                    value: true,
+                    message: "This field is required",
+                  },
+                  pattern: {
+                    value: new RegExp(
+                      `^https:\\/\\/www\\.${selectedOption.value.toLowerCase()}\\.com\\/.*$`
+                    ),
+                    message: "Please enter a valid URL",
+                  },
+                }}
+                placeholder={`e.g. https://www.${selectedOption.value.toLowerCase()}.com/johnappleseed`}
+              />
+            </form>
           )}
         </div>
       </div>

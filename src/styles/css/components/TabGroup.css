@@ -57,6 +57,7 @@ body {
   display: flex;
   gap: 5px;
   align-items: center;
+  color: #633cff;
 }
 .logotype__text {
   font-family: "Instrument Sans Variable", sans-serif;

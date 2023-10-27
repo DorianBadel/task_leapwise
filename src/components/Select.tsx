@@ -27,7 +27,13 @@ function Select() {
           name="select"
           placeholder="Select a platform..."
           value={selectedOption.value}
+          readOnly
           onFocus={() => setIsOpen(true)}
+          onBlur={() => {
+            setTimeout(() => {
+              setIsOpen(false);
+            }, 100);
+          }}
         />
         <span className={`input__icon-arrow ${isOpen ? "open" : ""}`}>
           <DropdownArrowIcon />
@@ -36,8 +42,9 @@ function Select() {
 
       {isOpen && (
         <ul className="select__dropdown">
-          {filteredOptions.map((option) => (
+          {filteredOptions.map((option, key) => (
             <a
+              key={key}
               onClick={() => {
                 setSelectedOption({ value: option.value, icon: option.icon });
                 setIsOpen(false);
@@ -46,7 +53,7 @@ function Select() {
               <li key={option.value}>
                 <div className="select__dropdown-icon">{option.icon}</div>
                 <div className="select__dropdown-label body__text-m">
-                  {option.label}
+                  {option.value}
                 </div>
               </li>
               {option.value !=

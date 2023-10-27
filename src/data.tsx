@@ -17,7 +17,6 @@ const allPlatforms: Array<platformT> = Object.entries(platformIcons).map(
 export const getSelectOptions = (filter?: string) => {
   const options = allPlatforms.map((platform) => ({
     value: platform.name,
-    label: platform.name,
     icon: platform.icon,
   }));
   if (filter) {

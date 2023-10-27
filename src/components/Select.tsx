@@ -50,11 +50,14 @@ function Select() {
                 setIsOpen(false);
               }}
             >
-              <li key={option.value}>
+              <li
+                key={option.value}
+                className={`${
+                  option.value === selectedOption.value ? "selected" : ""
+                }`}
+              >
                 <div className="select__dropdown-icon">{option.icon}</div>
-                <div className="select__dropdown-label body__text-m">
-                  {option.value}
-                </div>
+                <div className="select__dropdown-label">{option.value}</div>
               </li>
               {option.value !=
                 filteredOptions[filteredOptions.length - 1].value && <hr />}

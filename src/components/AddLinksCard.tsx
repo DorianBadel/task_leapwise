@@ -5,28 +5,23 @@ import Button from "./Button";
 import Card from "./Card";
 import Input from "./Input";
 import Select from "./Select";
-import { getSelectOptions, linkInputT } from "../data";
-import { useState } from "react";
-
-const filteredOptions = getSelectOptions();
+import { linkInputT } from "../data";
 
 const onSubmit: SubmitHandler<FieldValues> = (data) => {
   alert(JSON.stringify(data));
 };
 
-const defaultLinkInput: linkInputT = {
-  value: filteredOptions[0].value,
-  icon: filteredOptions[0].icon,
-};
-function AddLinksCard() {
-  const [links, setLinks] = useState<linkInputT[]>([]);
-
-  function setSelectedLink(index: number, option: linkInputT) {
-    const newLinks = [...links];
-    newLinks[index] = option;
-    setLinks(newLinks);
-  }
-
+function AddLinksCard({
+  addLinkButtonPressed,
+  listOfSelectedLinks,
+  allLinks,
+  setSelectedLinks: setSelectedLink,
+}: {
+  addLinkButtonPressed: () => void;
+  listOfSelectedLinks: linkInputT[];
+  allLinks: linkInputT[];
+  setSelectedLinks: (index: number, option: linkInputT) => void;
+}) {
   const {
     register,
     handleSubmit,
@@ -53,12 +48,12 @@ function AddLinksCard() {
               secondary
               onClick={(e) => {
                 e.preventDefault();
-                setLinks(links.concat(defaultLinkInput));
+                addLinkButtonPressed();
               }}
             >
               + Add new link
             </Button>
-            {links.length === 0 ? (
+            {listOfSelectedLinks.length === 0 ? (
               <div className="right__body-links">
                 <LinkInstructionSVG />
                 <div className="right__body-instructions">
@@ -73,14 +68,14 @@ function AddLinksCard() {
             ) : (
               <div className="link__container-wrapper">
                 <div className="link__container-wrapper-inner">
-                  {links.map((link, key) => (
+                  {listOfSelectedLinks.map((link, key) => (
                     <div className="link__container" key={key}>
                       <Select
                         index={key}
                         options={[
                           link,
-                          ...filteredOptions.filter((option) => {
-                            return !links.some(
+                          ...allLinks.filter((option) => {
+                            return !listOfSelectedLinks.some(
                               (linkItem) => linkItem.value === option.value
                             );
                           }),

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "./Button";
 import Card from "./Card";
 import TabGroup from "./TabGroup";
@@ -7,8 +6,13 @@ import LinksIcon from "../assets/icons/Links.svg";
 import ProfileIcon from "../assets/icons/Profile.svg";
 import { NavLink } from "react-router-dom";
 
-function Header() {
-  const [selectedTab, setSelectedTab] = useState(0);
+function Header({
+  activeTab,
+  selectTab,
+}: {
+  activeTab: number;
+  selectTab: (arg: number) => void;
+}) {
   return (
     <Card className="home__header">
       <Logotype />
@@ -17,19 +21,19 @@ function Header() {
           {
             lable: "Links",
             onClick: () => {
-              setSelectedTab(0);
+              selectTab(0);
             },
             icon: <LinksIcon />,
           },
           {
             lable: "Profile Details",
             onClick: () => {
-              setSelectedTab(1);
+              selectTab(1);
             },
             icon: <ProfileIcon />,
           },
         ]}
-        initialActiveIndex={selectedTab}
+        initialActiveIndex={activeTab}
       />
       <NavLink to="/preview" className="link">
         <Button secondary>Preview</Button>

@@ -73,3 +73,18 @@
     padding-left: 40px;
   }
 }
+
+.align__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 8px;
+
+  & .error-message {
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -37,6 +37,7 @@ const Input: React.FC<InputProps> = ({
     <div className={`input__container ${className}`}>
       <label htmlFor={name} className={`body__text-s ${error ? "error" : ""}`}>
         {label}
+        {validation?.required?.value && "*"}
       </label>
       {icon && <span className="input__icon">{icon}</span>}
       <input

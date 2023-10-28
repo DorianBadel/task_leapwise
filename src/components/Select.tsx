@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/css/components/Select.css";
 import "../styles/css/components/Input.css";
 import DropdownArrowIcon from "../assets/icons/DropdownArrow.svg";
-import { selectOptionT } from "../data";
+import { retrievePlatformIcon } from "../util/data";
 
 function Select({
   options,
@@ -10,9 +10,9 @@ function Select({
   onSelect,
   index,
 }: {
-  options: selectOptionT[];
-  selectedOption: selectOptionT;
-  onSelect: (index: number, arg: selectOptionT) => void;
+  options: string[];
+  selectedOption: string;
+  onSelect: (index: number, arg: string) => void;
   index: number;
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,14 +24,14 @@ function Select({
       </label>
       <div className="select__input  input__container">
         <span className="input__icon-platform input__icon">
-          {selectedOption.icon}
+          {retrievePlatformIcon(selectedOption)}
         </span>
         <input
           className="input__field"
           type="text"
           name="select"
           placeholder="Select a platform..."
-          value={selectedOption.value}
+          value={selectedOption}
           readOnly
           onFocus={() => setIsOpen(true)}
           onBlur={() => {
@@ -55,15 +55,15 @@ function Select({
                 }}
               >
                 <li
-                  key={option.value}
-                  className={`${
-                    option.value === selectedOption.value ? "selected" : ""
-                  }`}
+                  key={option}
+                  className={`${option === selectedOption ? "selected" : ""}`}
                 >
-                  <div className="select__dropdown-icon">{option.icon}</div>
-                  <div className="select__dropdown-label">{option.value}</div>
+                  <div className="select__dropdown-icon">
+                    {retrievePlatformIcon(option)}
+                  </div>
+                  <div className="select__dropdown-label">{option}</div>
                 </li>
-                {option.value != options[options.length - 1].value && <hr />}
+                {option != options[options.length - 1] && <hr />}
               </a>
             ))}
           </ul>

@@ -5,12 +5,10 @@ import Button from "./Button";
 import Card from "./Card";
 import Input from "./Input";
 import Select from "./Select";
-import { linkInputT } from "../data";
+import { displayNameFromName, getLinks, linkItemT } from "../util/data";
 import DragDropIcon from "../assets/icons/DragDrop.svg";
-
-const onSubmit: SubmitHandler<FieldValues> = (data) => {
-  alert(JSON.stringify(data));
-};
+import LocalStorage from "../util/localStorage";
+import { useEffect } from "react";
 
 function AddLinksCard({
   addLinkButtonPressed,
@@ -20,16 +18,35 @@ function AddLinksCard({
   removeSelectedLink,
 }: {
   addLinkButtonPressed: () => void;
-  listOfSelectedLinks: linkInputT[];
-  allLinks: linkInputT[];
-  setSelectedLinks: (index: number, option: linkInputT) => void;
+  listOfSelectedLinks: linkItemT[];
+  allLinks: linkItemT[];
+  setSelectedLinks: (index: number, option: string) => void;
   removeSelectedLink: (index: number) => void;
 }) {
   const {
     register,
     handleSubmit,
+    unregister,
+    setValue,
     formState: { errors },
   } = useForm<FieldValues>();
+
+  useEffect(() => {
+    getLinks().forEach((link, index) => {
+      setValue(`linkInput${index}`, link.link);
+    });
+  }, []);
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const remapedData: linkItemT[] = Object.keys(data).map((key) => {
+      const link = data[key];
+      const platformName = link.split("www.")[1].split(".com")[0];
+      return { platformName: displayNameFromName(platformName), link };
+    });
+
+    LocalStorage.saveLinkListToLocalStorage(remapedData);
+    alert(JSON.stringify(remapedData));
+  };
 
   return (
     <Card className="home__article-r">
@@ -83,7 +100,10 @@ function AddLinksCard({
                           </div>
                           <span
                             className="body__text-m text-link-secondary"
-                            onClick={() => removeSelectedLink(key)}
+                            onClick={() => {
+                              removeSelectedLink(key);
+                              unregister(`linkInput${key}`);
+                            }}
                           >
                             Remove
                           </span>
@@ -91,17 +111,18 @@ function AddLinksCard({
                         <Select
                           index={key}
                           options={[
-                            link,
-                            ...allLinks.filter((option) => {
-                              return !listOfSelectedLinks.some(
-                                (linkItem) => linkItem.value === option.value
-                              );
-                            }),
+                            link.platformName,
+                            ...allLinks
+                              .filter((option) => {
+                                return !listOfSelectedLinks.some(
+                                  (linkItem) =>
+                                    linkItem.platformName ===
+                                    option.platformName
+                                );
+                              })
+                              .map((linkItem) => linkItem.platformName),
                           ]}
-                          selectedOption={{
-                            value: link.value,
-                            icon: link.icon,
-                          }}
+                          selectedOption={link.platformName}
                           onSelect={setSelectedLink}
                         />
                         <Input
@@ -118,12 +139,12 @@ function AddLinksCard({
                             },
                             pattern: {
                               value: new RegExp(
-                                `^https:\\/\\/www\\.${link.value.toLowerCase()}\\.com\\/.*$`
+                                `^https:\\/\\/www\\.${link.platformName.toLowerCase()}\\.com\\/.*$`
                               ),
                               message: "Please enter a valid URL",
                             },
                           }}
-                          placeholder={`e.g. https://www.${link.value.toLowerCase()}.com/johnappleseed`}
+                          placeholder={`e.g. https://www.${link.platformName.toLowerCase()}.com/johnappleseed`}
                         />
                       </div>
                     </div>

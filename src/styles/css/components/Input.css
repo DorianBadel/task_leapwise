@@ -57,6 +57,7 @@ body {
   display: flex;
   gap: 5px;
   align-items: center;
+  color: #633cff;
 }
 .logotype__text {
   font-family: "Instrument Sans Variable", sans-serif;
@@ -80,7 +81,17 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .text-link:hover {
+  cursor: pointer;
   color: #beadff;
+}
+.text-link-secondary {
+  color: #737373;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.text-link-secondary:hover {
+  cursor: pointer;
+  color: #633cff;
 }
 
 .input__container {
@@ -130,7 +141,7 @@ body {
   left: 16px;
   top: 50%;
   transform: translateY(10%);
-  color: #d9d9d9;
+  color: #333;
 }
 .input__container .input__icon + input {
   padding-left: 40px;

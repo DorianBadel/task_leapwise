@@ -23,6 +23,10 @@
   align-items: center;
 }
 
+.article__right-form {
+  flex: 1;
+}
+
 .home__article {
   &-l,
   &-r {
@@ -42,6 +46,40 @@
     justify-content: space-between;
     padding: 0px;
     gap: 0px;
+  }
+}
+
+.left__container {
+  position: absolute;
+  height: 300px;
+  top: 51%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 237px;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    height: 24px;
+    width: 0px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: global.$color-borders;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  &-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 }
 
@@ -66,7 +104,6 @@
   gap: 24px;
 
   &-links {
-    padding: 20px;
     background-color: global.$color-light-grey;
     height: 100%;
     display: flex;
@@ -89,4 +126,62 @@
   justify-content: end;
   border-top: 1px solid global.$color-borders;
   padding: 24px 40px;
+}
+
+.link__card {
+  &-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+.link__container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  background-color: global.$color-light-grey;
+
+  &-wrapper {
+    overflow-y: scroll;
+    scrollbar-gutter: 25px;
+
+    &::-webkit-scrollbar {
+      height: 24px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: global.$color-borders;
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
+    flex-grow: 0;
+    height: 380px;
+
+    &-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+}
+
+.link__input-text {
+  width: 100% !important;
 }

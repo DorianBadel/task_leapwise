@@ -60,4 +60,16 @@
     right: 16px;
     top: 50%;
   }
+
+  & .input__icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(+10%);
+    color: global.$color-dark-grey;
+  }
+
+  .input__icon + input {
+    padding-left: 40px;
+  }
 }

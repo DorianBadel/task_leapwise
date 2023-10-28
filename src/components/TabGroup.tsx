@@ -3,13 +3,27 @@ import "../styles/css/components/TabGroup.css";
 type TabType = {
   lable: string;
   onClick: () => void;
+  icon?: React.ReactNode;
 };
 
-function TabGroup({ tabs }: { tabs: TabType[] }) {
+function TabGroup({
+  tabs,
+  initialActiveIndex = 0,
+}: {
+  tabs: TabType[];
+  initialActiveIndex?: number;
+}) {
   return (
     <div className="tab__container">
-      {tabs.map((tab) => (
-        <button className="button-tab" onClick={tab.onClick}>
+      {tabs.map((tab, key) => (
+        <button
+          key={key}
+          className={`button-tab ${
+            initialActiveIndex === key && "button-tab-selected"
+          }`}
+          onClick={tab.onClick}
+        >
+          {tab.icon && <span className="tab__icon">{tab.icon}</span>}
           {tab.lable}
         </button>
       ))}

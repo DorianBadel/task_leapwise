@@ -35,6 +35,14 @@
   color: #333;
 }
 
+.logo__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
+}
+
 body {
   background: #fafafa;
   margin: 0px;
@@ -43,6 +51,20 @@ body {
   body {
     background: #fff;
   }
+}
+
+.logotype {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #633cff;
+}
+.logotype__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
 }
 
 .text-gray {
@@ -59,16 +81,26 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .text-link:hover {
+  cursor: pointer;
   color: #beadff;
+}
+.text-link-secondary {
+  color: #737373;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.text-link-secondary:hover {
+  cursor: pointer;
+  color: #633cff;
 }
 
 .button-primary,
 .button-secondary,
-.button-tab {
+.button-tab,
+.button-link {
   display: flex;
   padding: 11px 27px;
   align-items: center;
-  gap: 8px;
   border-radius: 8px;
   justify-content: center;
   font-weight: 600;
@@ -82,12 +114,16 @@ body {
 .button-secondary:not(:disabled):active,
 .button-tab:not(:disabled):hover,
 .button-tab:not(:disabled):focus,
-.button-tab:not(:disabled):active {
+.button-tab:not(:disabled):active,
+.button-link:not(:disabled):hover,
+.button-link:not(:disabled):focus,
+.button-link:not(:disabled):active {
   cursor: pointer;
 }
 .button-primary:disabled,
 .button-secondary:disabled,
-.button-tab:disabled {
+.button-tab:disabled,
+.button-link:disabled {
   cursor: not-allowed;
 }
 
@@ -104,7 +140,6 @@ body {
 .button-primary:disabled {
   background: #efebff;
 }
-
 .button-secondary {
   border: 1px solid #633cff;
   color: #633cff;
@@ -117,6 +152,28 @@ body {
 }
 .button-secondary:disabled {
   background: #efebff;
+}
+.button-link {
+  border: none;
+  color: #fff;
+  background: #633cff;
+  display: flex;
+  align-self: stretch;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 16px;
+  width: 100%;
+  height: 44px;
+}
+.button-link:not(:disabled):hover, .button-link:not(:disabled):focus, .button-link:not(:disabled):active {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+  color: #fff;
+  background: #beadff;
+}
+.button-link span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .button-tab {
@@ -134,6 +191,58 @@ body {
 }
 .button-tab:disabled {
   background: #efebff;
+}
+.button-tab-selected {
+  color: #633cff;
+  background: #beadff;
+}
+.button-tab:has(.tab__icon) {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+.button-tab:has(.tab__icon) svg {
+  fill: currentColor;
+  width: 20px;
+  height: 20px;
+}
+
+.icon-github {
+  background: #1a1a1a;
+}
+.icon-twitter {
+  background: #43b7e9;
+}
+.icon-linkedin {
+  background: #2d68ff;
+}
+.icon-youtube {
+  background: #ee3939;
+}
+.icon-facebook {
+  background: #2442ac;
+}
+.icon-twitch {
+  background: #ee3fc8;
+}
+.icon-dev_to {
+  background: #333;
+}
+.icon-codewars {
+  background: #8a1a50;
+}
+.icon-freecodecamp {
+  background: #302267;
+}
+.icon-gitlab {
+  background: #eb4925;
+}
+.icon-hashnode {
+  background: #0330d1;
+}
+.icon-stackoverflow {
+  background: #ec7100;
 }
 
 /*# sourceMappingURL=Buttons.css.map */

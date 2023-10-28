@@ -63,6 +63,11 @@ $text-line-height-small: 100%;
   }
 }
 
+.logo__text {
+  @include typography($text-weight-bold, $text-size-logo);
+}
+
+// Breakpoints
 $screen-tablet: "max-width: 768px";
 $screen-mobile: "max-width: 375px";
 
@@ -72,6 +77,18 @@ body {
 
   @media ($screen-mobile) {
     background: $color-white;
+  }
+}
+
+// Logotype
+.logotype {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: $color-primary;
+
+  &__text {
+    @include typography($text-weight-bold, $text-size-logo);
   }
 }
 
@@ -89,6 +106,17 @@ body {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   &:hover {
+    cursor: pointer;
     color: $color-primary-hover;
+  }
+
+  &-secondary {
+    color: $color-grey;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      color: $color-primary;
+    }
   }
 }

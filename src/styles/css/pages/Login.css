@@ -35,6 +35,14 @@
   color: #333;
 }
 
+.logo__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
+}
+
 body {
   background: #fafafa;
   margin: 0px;
@@ -43,6 +51,20 @@ body {
   body {
     background: #fff;
   }
+}
+
+.logotype {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #633cff;
+}
+.logotype__text {
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 150%;
+  color: #333;
 }
 
 .text-gray {
@@ -59,7 +81,17 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .text-link:hover {
+  cursor: pointer;
   color: #beadff;
+}
+.text-link-secondary {
+  color: #737373;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.text-link-secondary:hover {
+  cursor: pointer;
+  color: #633cff;
 }
 
 .wrapper {
@@ -80,14 +112,6 @@ body {
     padding: 32px;
     align-items: start;
   }
-}
-
-.logo__text {
-  font-family: "Instrument Sans Variable", sans-serif;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 150%;
-  color: #333;
 }
 
 form {

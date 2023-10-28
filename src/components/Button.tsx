@@ -3,6 +3,8 @@ import "./../styles/css/components/Buttons.css";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   secondary?: boolean;
+  link?: boolean;
+  className?: string;
   children: ReactNode;
 };
 
@@ -12,13 +14,17 @@ type ButtonOnClickProps = ButtonProps & {
 
 function Button({
   secondary = false,
+  link = false,
   onClick,
+  className,
   children,
   ...other
 }: ButtonProps | ButtonOnClickProps) {
   return (
     <button
-      className={`${secondary ? "button-secondary" : "button-primary"}`}
+      className={`${
+        secondary ? "button-secondary" : link ? "button-link" : "button-primary"
+      } ${className ? className : ""}`}
       onClick={onClick}
       {...other}
     >

@@ -22,6 +22,7 @@ export const getSelectOptions = () => {
   const options = allPlatforms.map((platform) => ({
     value: platform.name,
     icon: platform.icon,
+    link: "",
   }));
   // if (filter) { //turned out not to be necessary
   //   return (

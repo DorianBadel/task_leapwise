@@ -6,6 +6,7 @@ import Card from "./Card";
 import Input from "./Input";
 import Select from "./Select";
 import { linkInputT } from "../data";
+import DragDropIcon from "../assets/icons/DragDrop.svg";
 
 const onSubmit: SubmitHandler<FieldValues> = (data) => {
   alert(JSON.stringify(data));
@@ -16,11 +17,13 @@ function AddLinksCard({
   listOfSelectedLinks,
   allLinks,
   setSelectedLinks: setSelectedLink,
+  removeSelectedLink,
 }: {
   addLinkButtonPressed: () => void;
   listOfSelectedLinks: linkInputT[];
   allLinks: linkInputT[];
   setSelectedLinks: (index: number, option: linkInputT) => void;
+  removeSelectedLink: (index: number) => void;
 }) {
   const {
     register,
@@ -69,41 +72,60 @@ function AddLinksCard({
               <div className="link__container-wrapper">
                 <div className="link__container-wrapper-inner">
                   {listOfSelectedLinks.map((link, key) => (
-                    <div className="link__container" key={key}>
-                      <Select
-                        index={key}
-                        options={[
-                          link,
-                          ...allLinks.filter((option) => {
-                            return !listOfSelectedLinks.some(
-                              (linkItem) => linkItem.value === option.value
-                            );
-                          }),
-                        ]}
-                        selectedOption={{ value: link.value, icon: link.icon }}
-                        onSelect={setSelectedLink}
-                      />
-                      <Input
-                        className="link__input-text"
-                        label="Link"
-                        name={`linkInput${key}`}
-                        icon={<LinksIcon />}
-                        register={register}
-                        error={errors[`linkInput${key}`]?.type as string}
-                        validation={{
-                          required: {
-                            value: true,
-                            message: "This field is required",
-                          },
-                          pattern: {
-                            value: new RegExp(
-                              `^https:\\/\\/www\\.${link.value.toLowerCase()}\\.com\\/.*$`
-                            ),
-                            message: "Please enter a valid URL",
-                          },
-                        }}
-                        placeholder={`e.g. https://www.${link.value.toLowerCase()}.com/johnappleseed`}
-                      />
+                    <div className="link__card" key={key}>
+                      <div className="link__container">
+                        <div className="link__card-header">
+                          <div>
+                            <DragDropIcon />
+                            <span className="heading__text-s text-gray">
+                              Link #{`${key + 1}`}
+                            </span>
+                          </div>
+                          <span
+                            className="body__text-m text-link-secondary"
+                            onClick={() => removeSelectedLink(key)}
+                          >
+                            Remove
+                          </span>
+                        </div>
+                        <Select
+                          index={key}
+                          options={[
+                            link,
+                            ...allLinks.filter((option) => {
+                              return !listOfSelectedLinks.some(
+                                (linkItem) => linkItem.value === option.value
+                              );
+                            }),
+                          ]}
+                          selectedOption={{
+                            value: link.value,
+                            icon: link.icon,
+                          }}
+                          onSelect={setSelectedLink}
+                        />
+                        <Input
+                          className="link__input-text"
+                          label="Link"
+                          name={`linkInput${key}`}
+                          icon={<LinksIcon />}
+                          register={register}
+                          error={errors[`linkInput${key}`]?.type as string}
+                          validation={{
+                            required: {
+                              value: true,
+                              message: "This field is required",
+                            },
+                            pattern: {
+                              value: new RegExp(
+                                `^https:\\/\\/www\\.${link.value.toLowerCase()}\\.com\\/.*$`
+                              ),
+                              message: "Please enter a valid URL",
+                            },
+                          }}
+                          placeholder={`e.g. https://www.${link.value.toLowerCase()}.com/johnappleseed`}
+                        />
+                      </div>
                     </div>
                   ))}
                 </div>

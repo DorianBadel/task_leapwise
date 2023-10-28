@@ -81,7 +81,17 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .text-link:hover {
+  cursor: pointer;
   color: #beadff;
+}
+.text-link-secondary {
+  color: #737373;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.text-link-secondary:hover {
+  cursor: pointer;
+  color: #633cff;
 }
 
 .home {
@@ -199,6 +209,19 @@ body {
   justify-content: end;
   border-top: 1px solid #d9d9d9;
   padding: 24px 40px;
+}
+
+.link__card-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.link__card-header > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .link__container {

@@ -128,6 +128,22 @@
   padding: 24px 40px;
 }
 
+.link__card {
+  &-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
 .link__container {
   padding: 20px;
   display: flex;

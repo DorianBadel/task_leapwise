@@ -81,7 +81,17 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .text-link:hover {
+  cursor: pointer;
   color: #beadff;
+}
+.text-link-secondary {
+  color: #737373;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+.text-link-secondary:hover {
+  cursor: pointer;
+  color: #633cff;
 }
 
 .input__container {

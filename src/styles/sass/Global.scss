@@ -106,6 +106,17 @@ body {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   &:hover {
+    cursor: pointer;
     color: $color-primary-hover;
+  }
+
+  &-secondary {
+    color: $color-grey;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      color: $color-primary;
+    }
   }
 }

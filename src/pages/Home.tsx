@@ -22,6 +22,12 @@ function Home() {
     newLinks[index] = option;
     setLinks(newLinks);
   }
+
+  function removeSelectedLink(index: number) {
+    const newLinks = [...links];
+    newLinks.splice(index, 1);
+    setLinks(newLinks);
+  }
   return (
     <div className="home">
       <div className="home__grid">
@@ -31,6 +37,7 @@ function Home() {
           <LinksPreview links={links} />
         </Card>
         <AddLinksCard
+          removeSelectedLink={removeSelectedLink}
           addLinkButtonPressed={() => setLinks(links.concat(defaultLinkInput))}
           listOfSelectedLinks={links}
           allLinks={filteredOptions}

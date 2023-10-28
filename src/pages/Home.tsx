@@ -4,22 +4,29 @@ import AddLinksCard from "../components/AddLinksCard";
 import PhonePreviewSVG from "../assets/PhonePreviewSVG";
 import Header from "../components/Header";
 import { useState } from "react";
-import { getSelectOptions, linkInputT } from "../data";
+import { getLinks, getSelectOptions, linkItemT } from "../util/data";
 import LinksPreview from "../components/LinksPreview";
 
 const filteredOptions = getSelectOptions();
 
-const defaultLinkInput: linkInputT = {
-  value: filteredOptions[0].value,
-  icon: filteredOptions[0].icon,
+const defaultLinkInput: linkItemT = {
+  platformName: filteredOptions[0].platformName,
+  link: filteredOptions[0].link,
 };
 
 function Home() {
-  const [links, setLinks] = useState<linkInputT[]>([]);
+  const [links, setLinks] = useState<linkItemT[]>(getLinks());
 
-  function setSelectedLink(index: number, option: linkInputT) {
+  function addDefaultLink() {
+    setLinks(links.concat(defaultLinkInput));
+  }
+
+  function setSelectedLink(index: number, option: string) {
     const newLinks = [...links];
-    newLinks[index] = option;
+    newLinks[index] = {
+      platformName: option,
+      link: option,
+    };
     setLinks(newLinks);
   }
 
@@ -28,17 +35,20 @@ function Home() {
     newLinks.splice(index, 1);
     setLinks(newLinks);
   }
+
   return (
     <div className="home">
       <div className="home__grid">
         <Header />
         <Card className="home__article-l">
           <PhonePreviewSVG />
-          <LinksPreview links={links} />
+          <LinksPreview
+            platformNames={links.map((link) => link.platformName)}
+          />
         </Card>
         <AddLinksCard
           removeSelectedLink={removeSelectedLink}
-          addLinkButtonPressed={() => setLinks(links.concat(defaultLinkInput))}
+          addLinkButtonPressed={addDefaultLink}
           listOfSelectedLinks={links}
           allLinks={filteredOptions}
           setSelectedLinks={setSelectedLink}

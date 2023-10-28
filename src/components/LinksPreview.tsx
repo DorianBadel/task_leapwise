@@ -1,21 +1,21 @@
 import Button from "./Button";
 import RightArrowIcon from "../assets/icons/RightArrow.svg";
-import { linkInputT } from "../data";
+import { retrievePlatformIcon } from "../util/data";
 
-function LinksPreview({ links }: { links: linkInputT[] }) {
+function LinksPreview({ platformNames }: { platformNames: string[] }) {
   return (
     <div className="left__container">
       <div className="left__container-inner">
-        {links.map((link, key) => (
+        {platformNames.map((platformName, key) => (
           <Button
             link
             key={key}
-            className={`icon-${link.value.toLowerCase()}`}
+            className={`icon-${platformName.toLowerCase()}`}
             disabled
           >
             <span>
-              {link.icon}
-              {link.value}
+              {retrievePlatformIcon(platformName)}
+              {platformName}
             </span>
             <RightArrowIcon />
           </Button>

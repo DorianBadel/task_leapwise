@@ -1,6 +1,7 @@
 import React, { HTMLProps } from "react";
-import { UseFormRegister, FieldValues } from "react-hook-form";
+import { UseFormRegister, FieldValues, Controller } from "react-hook-form";
 import "../styles/css/components/Input.css";
+import ImageIcon from "../assets/icons/Image.svg";
 
 type ValidationType = {
   required?: { value: boolean; message: string };
@@ -51,6 +52,50 @@ const Input: React.FC<InputProps> = ({
           {validation?.[error as keyof ValidationType]?.message}
         </span>
       )}
+    </div>
+  );
+};
+
+export const ImageInput = ({
+  control,
+  label,
+  description,
+}: {
+  control: any;
+  label: string;
+  description: string;
+}) => {
+  const [selectedImage, setSelectedImage] = React.useState<string>("");
+  return (
+    <div className="input__image">
+      <p className={"body__text-s"}>{label}</p>
+      <label
+        htmlFor="photo"
+        className={`input__image-label ${
+          selectedImage === "" ? "" : "hasImage"
+        }`}
+        style={{ backgroundImage: `url(${selectedImage})` }}
+      >
+        <ImageIcon />
+        {selectedImage === "" ? "+ Upload Image" : "Change Image"}
+      </label>
+      <Controller
+        name="photo"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <input
+            id="photo"
+            type="file"
+            onChange={(e) => {
+              field.onChange(e.target.files);
+              if (e.target.files === null) return;
+              setSelectedImage(URL.createObjectURL(e.target.files[0]));
+            }}
+          />
+        )}
+      />
+      <span className="body__text-s text-gray">{description}</span>
     </div>
   );
 };

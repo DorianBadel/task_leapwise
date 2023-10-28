@@ -1,12 +1,28 @@
 import { linkItemT } from "./data";
+export type profileDetailsT = {
+  name: string;
+  surname: string;
+  email: string;
+  profilePicture: string;
+};
 
 const LocalStorage = {
-  getLocalStorage: (): linkItemT[] => {
+  //Link List
+  getLinks: (): linkItemT[] => {
     const linkList = localStorage.getItem("linkList");
     return (linkList && JSON.parse(linkList)) || [];
   },
-  saveLinkListToLocalStorage: (linkList: linkItemT[]) => {
+  saveLinkList: (linkList: linkItemT[]) => {
     localStorage.setItem("linkList", JSON.stringify(linkList));
+  },
+
+  //Profile Details
+  getProfileDetails: (): profileDetailsT | undefined => {
+    const profileDetails = localStorage.getItem("profileDetails");
+    return (profileDetails && JSON.parse(profileDetails)) || undefined;
+  },
+  saveProfileDetails: (profileDetails: profileDetailsT) => {
+    localStorage.setItem("profileDetails", JSON.stringify(profileDetails));
   },
 };
 

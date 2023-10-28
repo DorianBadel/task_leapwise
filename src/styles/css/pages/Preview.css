@@ -139,6 +139,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 24px;
 }
 .preview__card-header-avatar {
@@ -146,6 +147,13 @@ body {
   height: 104px;
   border-radius: 104px;
   border: 4px solid #633cff;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+  }
 }
 .preview__card-header-text {
   display: flex;

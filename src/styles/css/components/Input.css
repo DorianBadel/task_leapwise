@@ -160,4 +160,36 @@ body {
   transform: translateY(-50%);
 }
 
+.input__image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: space-between;
+}
+.input__image input[type=file] {
+  display: none;
+}
+.input__image-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #633cff;
+  background: #efebff;
+  padding: 61px 38px 60px 39px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Instrument Sans Variable", sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 600;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.input__image-label.hasImage {
+  box-shadow: inset 0 0 10em 1em rgba(0, 0, 0, 0.4);
+}
+
 /*# sourceMappingURL=Input.css.map */

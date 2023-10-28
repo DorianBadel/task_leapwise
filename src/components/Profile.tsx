@@ -1,17 +1,35 @@
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import Button from "./Button";
-import Input from "./Input";
+import Input, { ImageInput } from "./Input";
 import Card from "./Card";
 import "../styles/css/components/Profile.css";
+import LocalStorage from "../util/localStorage";
+
+const getBase64 = (file: any) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+};
 
 const onSubmit: SubmitHandler<FieldValues> = (data) => {
-  alert(JSON.stringify(data));
+  getBase64(data.photo[0]).then((base64) => {
+    LocalStorage.saveProfileDetails({
+      name: data.firstName,
+      surname: data.lastName,
+      email: data.email,
+      profilePicture: base64 as string,
+    });
+  });
 };
 
 function Profile() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
   return (
@@ -29,7 +47,13 @@ function Profile() {
             </div>
 
             <div className="right__body">
-              <div className="form__card"></div>
+              <div className="form__card">
+                <ImageInput
+                  control={control}
+                  label="Profile picture"
+                  description="Image must be below 1024x1024px. Use PNG or JPG format."
+                />
+              </div>
               <div className="form__card">
                 <Input
                   name="firstName"

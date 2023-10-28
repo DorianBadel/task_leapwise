@@ -3,7 +3,8 @@ import Button from "./Button";
 import Input, { ImageInput } from "./Input";
 import Card from "./Card";
 import "../styles/css/components/Profile.css";
-import LocalStorage from "../util/localStorage";
+import LocalStorage, { profileDetailsT } from "../util/localStorage";
+import { useEffect } from "react";
 
 const getBase64 = (file: any) => {
   return new Promise((resolve, reject) => {
@@ -30,8 +31,20 @@ function Profile() {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    const profileDetails: profileDetailsT | undefined =
+      LocalStorage.getProfileDetails();
+    if (!profileDetails || profileDetails === undefined) return;
+
+    setValue("firstName", profileDetails.name);
+    setValue("lastName", profileDetails.surname);
+    setValue("email", profileDetails.email);
+    setValue("photo", profileDetails.profilePicture);
+  }, []);
   return (
     <Card className="home__article-r">
       <div className="article__right-form">

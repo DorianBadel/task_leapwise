@@ -5,6 +5,7 @@ import TabGroup from "./TabGroup";
 import Logotype from "../assets/icons/Logotype";
 import LinksIcon from "../assets/icons/Links.svg";
 import ProfileIcon from "../assets/icons/Profile.svg";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -30,7 +31,9 @@ function Header() {
         ]}
         initialActiveIndex={selectedTab}
       />
-      <Button secondary>Preview</Button>
+      <NavLink to="/preview" className="link">
+        <Button secondary>Preview</Button>
+      </NavLink>
     </Card>
   );
 }

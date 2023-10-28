@@ -262,4 +262,8 @@ body {
   width: 100% !important;
 }
 
+.link {
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=Home.css.map */

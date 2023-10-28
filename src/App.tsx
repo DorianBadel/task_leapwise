@@ -4,6 +4,7 @@ import ComponentList from "./Component.temp";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import Preview from "./pages/Preview";
 
 function App() {
   const isAuth = true;
@@ -15,6 +16,7 @@ function App() {
           <Route path="/components" element={<ComponentList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/preview" element={<Preview />} />
         </Routes>
       </Router>
     </>

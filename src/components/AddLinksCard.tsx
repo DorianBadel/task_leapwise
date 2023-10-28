@@ -15,16 +15,17 @@ const onSubmit: SubmitHandler<FieldValues> = (data) => {
 };
 
 const defaultLinkInput: linkInputT = {
-  order: 0,
   value: filteredOptions[0].value,
   icon: filteredOptions[0].icon,
 };
 function AddLinksCard() {
   const [links, setLinks] = useState<linkInputT[]>([]);
-  const [selectedOption, setSelectedOption] = useState({
-    value: filteredOptions[0].value,
-    icon: filteredOptions[0].icon,
-  });
+
+  function setSelectedLink(index: number, option: linkInputT) {
+    const newLinks = [...links];
+    newLinks[index] = option;
+    setLinks(newLinks);
+  }
 
   const {
     register,
@@ -72,20 +73,28 @@ function AddLinksCard() {
             ) : (
               <div className="link__container-wrapper">
                 <div className="link__container-wrapper-inner">
-                  {links.map((link) => (
-                    <div className="link__container">
+                  {links.map((link, key) => (
+                    <div className="link__container" key={key}>
                       <Select
-                        options={filteredOptions}
+                        index={key}
+                        options={[
+                          link,
+                          ...filteredOptions.filter((option) => {
+                            return !links.some(
+                              (linkItem) => linkItem.value === option.value
+                            );
+                          }),
+                        ]}
                         selectedOption={{ value: link.value, icon: link.icon }}
-                        onSelect={setSelectedOption}
+                        onSelect={setSelectedLink}
                       />
                       <Input
                         className="link__input-text"
                         label="Link"
-                        name="linkInput"
+                        name={`linkInput${key}`}
                         icon={<LinksIcon />}
                         register={register}
-                        error={errors.linkInput?.type as string}
+                        error={errors[`linkInput${key}`]?.type as string}
                         validation={{
                           required: {
                             value: true,
@@ -93,12 +102,12 @@ function AddLinksCard() {
                           },
                           pattern: {
                             value: new RegExp(
-                              `^https:\\/\\/www\\.${selectedOption.value.toLowerCase()}\\.com\\/.*$`
+                              `^https:\\/\\/www\\.${link.value.toLowerCase()}\\.com\\/.*$`
                             ),
                             message: "Please enter a valid URL",
                           },
                         }}
-                        placeholder={`e.g. https://www.${selectedOption.value.toLowerCase()}.com/johnappleseed`}
+                        placeholder={`e.g. https://www.${link.value.toLowerCase()}.com/johnappleseed`}
                       />
                     </div>
                   ))}

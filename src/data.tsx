@@ -18,25 +18,24 @@ export type selectOptionT = {
   value: string;
   icon: React.ReactElement;
 };
-export const getSelectOptions = (filter?: string) => {
+export const getSelectOptions = () => {
   const options = allPlatforms.map((platform) => ({
     value: platform.name,
     icon: platform.icon,
   }));
-  if (filter) {
-    return (
-      options
-        // .filter((option) => option.value !== filter) // in case I want to remove the selected one
-        .filter((option) =>
-          option.value.toLowerCase().includes(filter.toLowerCase())
-        )
-    );
-  }
+  // if (filter) { //turned out not to be necessary
+  //   return (
+  //     options
+  //       // .filter((option) => option.value !== filter) // in case I want to remove the selected one
+  //       .filter((option) =>
+  //         option.value.toLowerCase().includes(filter.toLowerCase())
+  //       )
+  //   );
+  // }
   return options;
 };
 
 export type linkInputT = {
-  order: number;
   value: string;
   icon: React.ReactElement;
 };

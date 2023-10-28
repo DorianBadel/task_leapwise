@@ -149,7 +149,6 @@ body {
   gap: 24px;
 }
 .right__body-links {
-  padding: 20px;
   background-color: #fafafa;
   height: 100%;
   display: flex;
@@ -183,8 +182,21 @@ body {
 }
 .link__container-wrapper {
   overflow-y: scroll;
+  scrollbar-gutter: 25px;
   flex-grow: 0;
-  height: 500px;
+  height: 400px;
+}
+.link__container-wrapper::-webkit-scrollbar {
+  height: 24px;
+}
+.link__container-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.link__container-wrapper::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
 }
 .link__container-wrapper-inner {
   flex: 1;

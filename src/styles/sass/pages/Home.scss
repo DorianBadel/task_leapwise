@@ -70,7 +70,6 @@
   gap: 24px;
 
   &-links {
-    padding: 20px;
     background-color: global.$color-light-grey;
     height: 100%;
     display: flex;
@@ -106,8 +105,23 @@
 
   &-wrapper {
     overflow-y: scroll;
+    scrollbar-gutter: 25px;
+
+    &::-webkit-scrollbar {
+      height: 24px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: global.$color-borders;
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
     flex-grow: 0;
-    height: 500px;
+    height: 400px;
 
     &-inner {
       flex: 1;

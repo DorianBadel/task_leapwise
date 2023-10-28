@@ -237,7 +237,7 @@ body {
   overflow-y: scroll;
   scrollbar-gutter: 25px;
   flex-grow: 0;
-  height: 400px;
+  height: 380px;
 }
 .link__container-wrapper::-webkit-scrollbar {
   height: 24px;

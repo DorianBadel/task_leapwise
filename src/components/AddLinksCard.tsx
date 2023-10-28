@@ -135,7 +135,9 @@ function AddLinksCard({
         </div>
 
         <div className="right__footer">
-          <Button type="submit">Save</Button>
+          <Button type="submit" disabled={listOfSelectedLinks.length === 0}>
+            Save
+          </Button>
         </div>
       </form>
     </Card>

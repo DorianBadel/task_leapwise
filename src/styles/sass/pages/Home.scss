@@ -62,40 +62,6 @@
   }
 }
 
-.left__container {
-  position: absolute;
-  height: 300px;
-  top: 51%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 237px;
-
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    height: 24px;
-    width: 0px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: global.$color-borders;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }
-
-  &-inner {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
 .right__container {
   padding: 40px;
   display: flex;

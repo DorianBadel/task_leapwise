@@ -54,6 +54,7 @@ function Home() {
         <Card className="home__article-l">
           <PhonePreviewSVG />
           <LinksPreview
+            profileDetails={profile}
             platformNames={links.map((link) => link.platformName)}
           />
         </Card>

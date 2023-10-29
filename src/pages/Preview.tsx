@@ -5,10 +5,13 @@ import "../styles/css/pages/Preview.css";
 import { getLinks, linkItemT, retrievePlatformIcon } from "../util/data";
 import RightArrowIcon from "../assets/icons/RightArrow.svg";
 import LocalStorage, { simpleProfileDetailsT } from "../util/localStorage";
+import { useAlert } from "../util/AlertProvider";
+import LinksIcon from "../assets/icons/Links.svg";
 
 function Preview() {
   const selectedLinks = getLinks();
   const profileDetails = LocalStorage.getProfileDetails();
+  const alert = useAlert();
 
   //get the data form the url
   const location = useLocation();
@@ -23,6 +26,10 @@ function Preview() {
   function addLinkToClipboard() {
     const finalLink = createUrl();
     navigator.clipboard.writeText(finalLink);
+    alert.showAlert(
+      "The link has been copied to your clipboard!",
+      <LinksIcon />
+    );
   }
 
   function createUrl() {

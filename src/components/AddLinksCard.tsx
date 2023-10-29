@@ -9,6 +9,8 @@ import { displayNameFromName, getLinks, linkItemT } from "../util/data";
 import DragDropIcon from "../assets/icons/DragDrop.svg";
 import LocalStorage from "../util/localStorage";
 import { useEffect } from "react";
+import { useAlert } from "../util/AlertProvider";
+import SaveIcon from "../assets/icons/Save.svg";
 
 function AddLinksCard({
   addLinkButtonPressed,
@@ -30,6 +32,7 @@ function AddLinksCard({
     setValue,
     formState: { errors },
   } = useForm<FieldValues>();
+  const alert = useAlert();
 
   useEffect(() => {
     getLinks().forEach((link, index) => {
@@ -45,7 +48,7 @@ function AddLinksCard({
     });
 
     LocalStorage.saveLinkList(remapedData);
-    alert(JSON.stringify(remapedData));
+    alert.showAlert("Your changes have been successfully saved!", <SaveIcon />);
   };
 
   return (

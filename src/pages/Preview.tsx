@@ -128,7 +128,11 @@ function Preview() {
                     >
                       <Button
                         link
-                        className={`icon-${link.platformName.toLowerCase()}`}
+                        className={`icon-${
+                          link.platformName.includes(".")
+                            ? link.platformName.replace(".", "_").toLowerCase()
+                            : link.platformName.toLowerCase()
+                        }`}
                       >
                         <span>
                           {retrievePlatformIcon(link.platformName)}

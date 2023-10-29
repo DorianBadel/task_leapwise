@@ -47,6 +47,7 @@ export const nameFromLink = (link: string) => {
 };
 
 export const displayNameFromName = (name: string): string => {
+  if (name === "dev") return "Dev.to";
   const platform = allPlatforms.find((platform) => {
     return platform.name.toLowerCase() === name;
   });

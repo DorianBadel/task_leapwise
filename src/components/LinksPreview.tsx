@@ -10,7 +10,11 @@ function LinksPreview({ platformNames }: { platformNames: string[] }) {
           <Button
             link
             key={key}
-            className={`icon-${platformName.toLowerCase()}`}
+            className={`icon-${
+              platformName.includes(".")
+                ? platformName.replace(".", "_").toLowerCase()
+                : platformName.toLowerCase()
+            }`}
             disabled
           >
             <span>

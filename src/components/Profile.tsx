@@ -5,6 +5,8 @@ import Card from "./Card";
 import "../styles/css/components/Profile.css";
 import LocalStorage, { profileDetailsT } from "../util/localStorage";
 import { useEffect } from "react";
+import { useAlert } from "../util/AlertProvider";
+import SaveIcon from "../assets/icons/Save.svg";
 
 const getBase64 = (file: any) => {
   return new Promise((resolve, reject) => {
@@ -12,17 +14,6 @@ const getBase64 = (file: any) => {
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
     reader.readAsDataURL(file);
-  });
-};
-
-const onSubmit: SubmitHandler<FieldValues> = (data) => {
-  getBase64(data.photo[0]).then((base64) => {
-    LocalStorage.saveProfileDetails({
-      name: data.firstName,
-      surname: data.lastName,
-      email: data.email,
-      profilePicture: base64 as string,
-    });
   });
 };
 
@@ -34,6 +25,7 @@ function Profile() {
     setValue,
     formState: { errors },
   } = useForm();
+  const alert = useAlert();
 
   useEffect(() => {
     const profileDetails: profileDetailsT | undefined =
@@ -45,6 +37,18 @@ function Profile() {
     setValue("email", profileDetails.email);
     setValue("photo", profileDetails.profilePicture);
   }, []);
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    getBase64(data.photo[0]).then((base64) => {
+      LocalStorage.saveProfileDetails({
+        name: data.firstName,
+        surname: data.lastName,
+        email: data.email,
+        profilePicture: base64 as string,
+      });
+    });
+    alert.showAlert("Profile details saved!", <SaveIcon />);
+  };
   return (
     <Card className="home__article-r">
       <div className="article__right-form">

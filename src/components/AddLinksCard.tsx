@@ -43,7 +43,7 @@ function AddLinksCard({
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const remapedData: linkItemT[] = Object.keys(data).map((key) => {
       const link = data[key];
-      const platformName = link.split("www.")[1].split(".com")[0];
+      const platformName = link.split("www.")[1].split(".")[0];
       return { platformName: displayNameFromName(platformName), link };
     });
 
@@ -142,12 +142,18 @@ function AddLinksCard({
                             },
                             pattern: {
                               value: new RegExp(
-                                `^https:\\/\\/www\\.${link.platformName.toLowerCase()}\\.com\\/.*$`
+                                `^https:\/\/www\.${link.platformName.toLowerCase()}${
+                                  link.platformName.includes(".")
+                                    ? ""
+                                    : "\\.com"
+                                }\\/.*$`
                               ),
                               message: "Please enter a valid URL",
                             },
                           }}
-                          placeholder={`e.g. https://www.${link.platformName.toLowerCase()}.com/johnappleseed`}
+                          placeholder={`e.g. https://www.${link.platformName.toLowerCase()}${
+                            link.platformName.includes(".") ? "" : ".com"
+                          }/johnappleseed`}
                         />
                       </div>
                     </div>

@@ -1,9 +1,18 @@
 @use "../Global.scss" as global;
 
 .article__right-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+  }
 }
 
 .right__container {

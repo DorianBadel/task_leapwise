@@ -157,17 +157,19 @@ body {
   padding-left: 40px;
 }
 
-.align__row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-.align__row .error-message {
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+@media not (max-width: 767px) {
+  .align__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .align__row .error-message {
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .input__image {
@@ -176,6 +178,13 @@ body {
   align-items: center;
   gap: 24px;
   justify-content: space-between;
+}
+@media (max-width: 767px) {
+  .input__image {
+    flex-direction: column;
+    align-items: baseline;
+    gap: 12px;
+  }
 }
 .input__image input[type=file] {
   display: none;

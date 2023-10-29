@@ -68,7 +68,7 @@ export const ImageInput = ({
   const [selectedImage, setSelectedImage] = React.useState<string>("");
   return (
     <div className="input__image">
-      <p className={"body__text-s"}>{label}</p>
+      <p className={"body__text-m"}>{label}</p>
       <label
         htmlFor="photo"
         className={`input__image-label ${

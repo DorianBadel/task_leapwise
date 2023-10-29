@@ -51,7 +51,7 @@ function Profile() {
   };
   return (
     <Card className="home__article-r">
-      <div className="article__right-form">
+      <div className="article__right-form-wrapper">
         <form onSubmit={handleSubmit(onSubmit)} className="article__right-form">
           <div className="right__container">
             <div className="right__title">

@@ -104,10 +104,16 @@ body {
   color: #633cff;
 }
 
-.article__right-form {
+.article__right-form-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  overflow: scroll;
+}
+.article__right-form-wrapper::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 .right__container {

@@ -1,30 +1,21 @@
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import LinkInstructionSVG from "../assets/LinkInstructionSVG";
-import LinksIcon from "../assets/icons/Links.svg";
 import Button from "./Button";
 import Card from "./Card";
-import Input from "./Input";
-import Select from "./Select";
-import { displayNameFromName, getLinks, linkItemT } from "../util/data";
-import DragDropIcon from "../assets/icons/DragDrop.svg";
+import { displayNameFromName } from "../util/data";
 import LocalStorage from "../util/localStorage";
 import { useEffect } from "react";
 import { useAlert } from "../util/AlertProvider";
 import SaveIcon from "../assets/icons/Save.svg";
+import LinkCard from "./LinkCard";
+import { linkItemT, useLink } from "../util/DataProvider";
+import { DndContext, closestCenter, DragEndEvent } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
-function AddLinksCard({
-  addLinkButtonPressed,
-  listOfSelectedLinks,
-  allLinks,
-  setSelectedLinks: setSelectedLink,
-  removeSelectedLink,
-}: {
-  addLinkButtonPressed: () => void;
-  listOfSelectedLinks: linkItemT[];
-  allLinks: linkItemT[];
-  setSelectedLinks: (index: number, option: string) => void;
-  removeSelectedLink: (index: number) => void;
-}) {
+function AddLinksCard({}: {}) {
   const {
     register,
     handleSubmit,
@@ -33,23 +24,49 @@ function AddLinksCard({
     formState: { errors },
   } = useForm<FieldValues>();
   const alert = useAlert();
+  const linkContext = useLink();
+  const listOfSelectedLinks = linkContext.links;
 
   useEffect(() => {
-    getLinks().forEach((link, index) => {
-      setValue(`linkInput${index}`, link.link);
+    LocalStorage.getLinks().forEach((link) => {
+      setValue(`linkInput${link.id}`, link.link);
     });
   }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const remapedData: linkItemT[] = Object.keys(data).map((key) => {
+      console.log("addLinkscard onSubmit: ", key);
       const link = data[key];
       const platformName = link.split("www.")[1].split(".")[0];
-      return { platformName: displayNameFromName(platformName), link };
+      return {
+        platformName: displayNameFromName(platformName),
+        link,
+        id: key,
+      };
     });
 
     LocalStorage.saveLinkList(remapedData);
     alert.showAlert("Your changes have been successfully saved!", <SaveIcon />);
   };
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (over === null) return;
+
+    console.log(active, over);
+    console.log("ind", active.id, over.id);
+
+    if (active.id !== over.id) {
+      const activeIndex = listOfSelectedLinks.findIndex(
+        (link) => link.id === active.id
+      );
+      const overIndex = listOfSelectedLinks.findIndex(
+        (link) => link.id === over.id
+      );
+
+      linkContext.swapLinks(activeIndex, overIndex);
+    }
+  }
 
   return (
     <Card className="home__article-r">
@@ -71,7 +88,7 @@ function AddLinksCard({
               secondary
               onClick={(e) => {
                 e.preventDefault();
-                addLinkButtonPressed();
+                linkContext.addLink();
               }}
             >
               + Add new link
@@ -89,77 +106,30 @@ function AddLinksCard({
                 </div>
               </div>
             ) : (
-              <div className="link__container-wrapper">
-                <div className="link__container-wrapper-inner">
-                  {listOfSelectedLinks.map((link, key) => (
-                    <div className="link__card" key={key}>
-                      <div className="link__container">
-                        <div className="link__card-header">
-                          <div>
-                            <DragDropIcon />
-                            <span className="heading__text-s text-gray">
-                              Link #{`${key + 1}`}
-                            </span>
-                          </div>
-                          <span
-                            className="body__text-m text-link-secondary"
-                            onClick={() => {
-                              removeSelectedLink(key);
-                              unregister(`linkInput${key}`);
-                            }}
-                          >
-                            Remove
-                          </span>
-                        </div>
-                        <Select
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={listOfSelectedLinks}
+                  strategy={verticalListSortingStrategy}
+                >
+                  <div className="link__container-wrapper">
+                    <div className="link__container-wrapper-inner">
+                      {listOfSelectedLinks.map((link, key) => (
+                        <LinkCard
                           index={key}
-                          options={[
-                            link.platformName,
-                            ...allLinks
-                              .filter((option) => {
-                                return !listOfSelectedLinks.some(
-                                  (linkItem) =>
-                                    linkItem.platformName ===
-                                    option.platformName
-                                );
-                              })
-                              .map((linkItem) => linkItem.platformName),
-                          ]}
-                          selectedOption={link.platformName}
-                          onSelect={setSelectedLink}
-                        />
-                        <Input
-                          className="link__input-text"
-                          label="Link"
-                          name={`linkInput${key}`}
-                          icon={<LinksIcon />}
+                          key={key}
+                          link={link}
+                          unregister={unregister}
                           register={register}
-                          error={errors[`linkInput${key}`]?.type as string}
-                          validation={{
-                            required: {
-                              value: true,
-                              message: "This field is required",
-                            },
-                            pattern: {
-                              value: new RegExp(
-                                `^https:\/\/www\.${link.platformName.toLowerCase()}${
-                                  link.platformName.includes(".")
-                                    ? ""
-                                    : "\\.com"
-                                }\\/.*$`
-                              ),
-                              message: "Please enter a valid URL",
-                            },
-                          }}
-                          placeholder={`e.g. https://www.${link.platformName.toLowerCase()}${
-                            link.platformName.includes(".") ? "" : ".com"
-                          }/johnappleseed`}
+                          errors={errors}
                         />
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
+                </SortableContext>
+              </DndContext>
             )}
           </div>
         </div>

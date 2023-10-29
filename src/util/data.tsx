@@ -1,5 +1,4 @@
 import { platformIcons } from "../assets/icons/LinkIcons.svg";
-import LocalStorage from "./localStorage";
 
 type platformT = {
   name: string;
@@ -15,33 +14,22 @@ const allPlatforms: Array<platformT> = Object.entries(platformIcons).map(
   })
 );
 
-export type selectOptionT = {
-  value: string;
-  icon: React.ReactElement;
-};
-export const getSelectOptions = (): linkItemT[] => {
-  const options = allPlatforms.map((platform) => ({
-    platformName: platform.name,
-    link: "",
-  }));
-  // if (filter) { //turned out not to be necessary
-  //   return (
-  //     options
-  //       // .filter((option) => option.value !== filter) // in case I want to remove the selected one
-  //       .filter((option) =>
-  //         option.value.toLowerCase().includes(filter.toLowerCase())
-  //       )
-  //   );
-  // }
-  return options;
+export const getAllLinkNames = (): string[] => {
+  return allPlatforms.map((platform) => platform.name);
 };
 
-export const getLinks = (): linkItemT[] => {
-  const linkList = LocalStorage.getLinks();
-
-  return linkList;
+export const getFirstLinkName = (): string => {
+  return allPlatforms[0].name;
 };
 
+// export const getSelectOptions = (): linkItemT[] => {
+//   const options = allPlatforms.map((platform) => ({
+//     platformName: platform.name,
+//     link: "",
+//     id: key,
+//   }));
+//   return options;
+// };
 export const nameFromLink = (link: string) => {
   return link.split("www.")[1].split(".com")[0];
 };
@@ -59,13 +47,4 @@ export const retrievePlatformIcon = (platformName: string) => {
     return platform.name.toLowerCase() === platformName.toLowerCase();
   });
   return platform?.icon;
-};
-
-export type linkInputT = {
-  value: string;
-  icon: React.ReactElement;
-};
-export type linkItemT = {
-  platformName: string;
-  link: string;
 };

@@ -1,4 +1,4 @@
-import { linkItemT } from "./data";
+import { linkItemT } from "./DataProvider";
 
 export type simpleProfileDetailsT = {
   name: string;

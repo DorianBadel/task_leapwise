@@ -2,12 +2,11 @@ import Button from "./Button";
 import RightArrowIcon from "../assets/icons/RightArrow.svg";
 import { retrievePlatformIcon } from "../util/data";
 import "../styles/css/components/LinkPreview.css";
+import { useLink } from "../util/DataProvider";
 
 function LinksPreview({
-  platformNames,
   profileDetails,
 }: {
-  platformNames: string[];
   profileDetails: {
     name: string;
     surname: string;
@@ -15,6 +14,7 @@ function LinksPreview({
     profilePicture: string;
   };
 }) {
+  const platformNames = useLink().returnSelectedLinkNames();
   return (
     <div className="left__preview-container">
       <div className="left__preview-container-top">

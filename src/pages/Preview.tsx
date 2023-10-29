@@ -2,14 +2,16 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import { NavLink, useLocation } from "react-router-dom";
 import "../styles/css/pages/Preview.css";
-import { getLinks, linkItemT, retrievePlatformIcon } from "../util/data";
+import { retrievePlatformIcon } from "../util/data";
 import RightArrowIcon from "../assets/icons/RightArrow.svg";
 import LocalStorage, { simpleProfileDetailsT } from "../util/localStorage";
 import { useAlert } from "../util/AlertProvider";
 import LinksIcon from "../assets/icons/Links.svg";
+import { linkItemT, useLink } from "../util/DataProvider";
 
 function Preview() {
-  const selectedLinks = getLinks();
+  const linksContext = useLink();
+  const selectedLinks = linksContext.links;
   const profileDetails = LocalStorage.getProfileDetails();
   const alert = useAlert();
 

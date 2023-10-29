@@ -8,11 +8,9 @@ function Select({
   options,
   selectedOption,
   onSelect,
-  index,
 }: {
   options: string[];
   selectedOption: string;
-  index: number;
   onSelect: (option: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);

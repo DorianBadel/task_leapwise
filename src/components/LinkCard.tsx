@@ -48,7 +48,6 @@ function LinkCard({
           </span>
         </div>
         <Select
-          index={index}
           options={[
             link.platformName,
             ...getAllLinkNames()

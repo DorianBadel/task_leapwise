@@ -136,6 +136,14 @@ body {
 .button-link:disabled {
   cursor: not-allowed;
 }
+@media (max-width: 767px) {
+  .button-primary.expandable,
+  .button-secondary.expandable,
+  .button-tab.expandable,
+  .button-link.expandable {
+    width: 100%;
+  }
+}
 
 .button-primary {
   border: none;

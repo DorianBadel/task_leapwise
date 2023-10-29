@@ -113,7 +113,9 @@ function Profile() {
           </div>
 
           <div className="right__footer">
-            <Button type="submit">Save</Button>
+            <Button type="submit" className="expandable">
+              Save
+            </Button>
           </div>
         </form>
       </div>

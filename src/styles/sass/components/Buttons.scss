@@ -73,6 +73,12 @@
   &:disabled {
     cursor: not-allowed;
   }
+
+  &.expandable {
+    @media (global.$screen-mobile) {
+      width: 100%;
+    }
+  }
 }
 
 .button {

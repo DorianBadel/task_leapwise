@@ -1,8 +1,12 @@
 import { linkItemT } from "./data";
-export type profileDetailsT = {
+
+export type simpleProfileDetailsT = {
   name: string;
   surname: string;
   email: string;
+};
+
+export type profileDetailsT = simpleProfileDetailsT & {
   profilePicture: string;
 };
 

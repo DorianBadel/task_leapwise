@@ -1,9 +1,18 @@
 @use "../Global.scss" as global;
 
-.tab__container {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
+.tab {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 
-  border-radius: 12px;
+    border-radius: 12px;
+  }
+
+  &__text {
+    @media (global.$screen-mobile) {
+      display: none;
+      visibility: none;
+    }
+  }
 }

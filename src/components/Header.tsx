@@ -5,6 +5,7 @@ import Logotype from "../assets/icons/Logotype";
 import LinksIcon from "../assets/icons/Links.svg";
 import ProfileIcon from "../assets/icons/Profile.svg";
 import { NavLink } from "react-router-dom";
+import EyeIcon from "../assets/icons/Eye.svg";
 
 function Header({
   activeTab,
@@ -36,7 +37,9 @@ function Header({
         initialActiveIndex={activeTab}
       />
       <NavLink to="/preview" className="link">
-        <Button secondary>Preview</Button>
+        <Button secondary textAlternative={<EyeIcon />}>
+          Preview
+        </Button>
       </NavLink>
     </Card>
   );

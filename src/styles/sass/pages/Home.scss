@@ -12,6 +12,11 @@
   grid-template-columns: 5fr 8fr;
   grid-template-rows: 10% 80%;
   gap: 24px;
+
+  @media (global.$screen-tablet) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 80%;
+  }
 }
 
 .home__header {
@@ -21,6 +26,10 @@
   justify-content: space-between;
   padding: 24px;
   align-items: center;
+
+  @media (global.$screen-tablet) {
+    padding: 16px 16px 16px 24px;
+  }
 }
 
 .article__right-form {
@@ -38,6 +47,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (global.$screen-tablet) {
+      display: none;
+    }
   }
 
   &-r {

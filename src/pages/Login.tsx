@@ -22,7 +22,7 @@ function Login() {
   return (
     <div className="wrapper">
       <div className="login__container">
-        <Logotype />
+        <Logotype labelClass="fixed" />
         <Card>
           <div className="login__header">
             <div className="heading__text-m">Login</div>

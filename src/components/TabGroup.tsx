@@ -24,7 +24,7 @@ function TabGroup({
           onClick={tab.onClick}
         >
           {tab.icon && <span className="tab__icon">{tab.icon}</span>}
-          {tab.lable}
+          <span className="tab__text">{tab.lable}</span>
         </button>
       ))}
     </div>

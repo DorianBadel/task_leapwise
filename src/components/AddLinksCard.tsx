@@ -165,7 +165,11 @@ function AddLinksCard({
         </div>
 
         <div className="right__footer">
-          <Button type="submit" disabled={listOfSelectedLinks.length === 0}>
+          <Button
+            type="submit"
+            className="expandable"
+            disabled={listOfSelectedLinks.length === 0}
+          >
             Save
           </Button>
         </div>

@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 import "../styles/css/pages/Preview.css";
 import { getLinks, retrievePlatformIcon } from "../util/data";
 import RightArrowIcon from "../assets/icons/RightArrow.svg";
+import LocalStorage from "../util/localStorage";
 
 function Preview() {
   const selectedLinks = getLinks();
+  const profileDetails = LocalStorage.getProfileDetails();
 
   return (
     <div className="preview">
@@ -20,13 +22,28 @@ function Preview() {
         <Button>Share Link</Button>
       </Card>
       <div className="preview__card">
-        <div className="preview__card-header">
-          <div className="preview__card-header-avatar"></div>
-          <div className="preview__card-header-text">
-            <div className="heading__text-m">John Doe</div>
-            <div className="body__text-m text-gray">ben@example.com</div>
+        {profileDetails && (
+          <div className="preview__card-header">
+            {profileDetails.profilePicture && (
+              <div className="preview__card-header-avatar">
+                <img src={profileDetails.profilePicture} alt="avatar" />
+              </div>
+            )}
+            <div className="preview__card-header-text">
+              {profileDetails.name && (
+                <div className="heading__text-m">
+                  {profileDetails.name} {profileDetails.surname}
+                </div>
+              )}
+              {profileDetails.email && (
+                <div className="body__text-m text-gray">
+                  {profileDetails.email}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="preview__body">
           <div className="preview__body-inner">
             <div className="preview__body-linklist">

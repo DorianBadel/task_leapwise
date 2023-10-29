@@ -44,7 +44,7 @@ function AddLinksCard({
       return { platformName: displayNameFromName(platformName), link };
     });
 
-    LocalStorage.saveLinkListToLocalStorage(remapedData);
+    LocalStorage.saveLinkList(remapedData);
     alert(JSON.stringify(remapedData));
   };
 

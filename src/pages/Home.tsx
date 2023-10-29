@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { useState } from "react";
 import { getLinks, getSelectOptions, linkItemT } from "../util/data";
 import LinksPreview from "../components/LinksPreview";
+import Profile from "../components/Profile";
 
 const filteredOptions = getSelectOptions();
 
@@ -16,6 +17,7 @@ const defaultLinkInput: linkItemT = {
 
 function Home() {
   const [links, setLinks] = useState<linkItemT[]>(getLinks());
+  const [selectedTab, setSelectedTab] = useState(0);
 
   function addDefaultLink() {
     setLinks(links.concat(defaultLinkInput));
@@ -39,20 +41,24 @@ function Home() {
   return (
     <div className="home">
       <div className="home__grid">
-        <Header />
+        <Header activeTab={selectedTab} selectTab={setSelectedTab} />
         <Card className="home__article-l">
           <PhonePreviewSVG />
           <LinksPreview
             platformNames={links.map((link) => link.platformName)}
           />
         </Card>
-        <AddLinksCard
-          removeSelectedLink={removeSelectedLink}
-          addLinkButtonPressed={addDefaultLink}
-          listOfSelectedLinks={links}
-          allLinks={filteredOptions}
-          setSelectedLinks={setSelectedLink}
-        />
+        {selectedTab === 0 ? (
+          <AddLinksCard
+            removeSelectedLink={removeSelectedLink}
+            addLinkButtonPressed={addDefaultLink}
+            listOfSelectedLinks={links}
+            allLinks={filteredOptions}
+            setSelectedLinks={setSelectedLink}
+          />
+        ) : (
+          <Profile />
+        )}
       </div>
     </div>
   );

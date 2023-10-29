@@ -37,7 +37,7 @@ export const getSelectOptions = (): linkItemT[] => {
 };
 
 export const getLinks = (): linkItemT[] => {
-  const linkList = LocalStorage.getLocalStorage();
+  const linkList = LocalStorage.getLinks();
 
   return linkList;
 };

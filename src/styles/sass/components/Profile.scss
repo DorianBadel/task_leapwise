@@ -1,0 +1,21 @@
+@use "../Global.scss" as global;
+
+.article__right-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right__container {
+  height: auto;
+}
+
+.form__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: global.$color-light-grey;
+  padding: 20px;
+  border-radius: 12px;
+  gap: 12px;
+}

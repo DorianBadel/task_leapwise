@@ -33,26 +33,28 @@ function Profile({ profileDetails, setProfileDetails }: ProfileFormT) {
   }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (data.photo[0].name) {
-      DataParser.getBase64(data.photo[0]).then((base64) => {
-        LocalStorage.saveProfileDetails({
-          name: data.firstName,
-          surname: data.lastName,
-          email: data.email,
-          profilePicture: base64 as string,
+    if (data.photo[0]) {
+      if (data.photo[0].name) {
+        DataParser.getBase64(data.photo[0]).then((base64) => {
+          LocalStorage.saveProfileDetails({
+            name: data.firstName,
+            surname: data.lastName,
+            email: data.email,
+            profilePicture: base64 as string,
+          });
+          setProfileDetails({
+            name: data.firstName,
+            surname: data.lastName,
+            email: data.email,
+            profilePicture: base64 as string,
+          });
         });
-        setProfileDetails({
-          name: data.firstName,
-          surname: data.lastName,
-          email: data.email,
-          profilePicture: base64 as string,
-        });
-      });
+      }
     } else {
       LocalStorage.saveProfileDetails({
         name: data.firstName,
         surname: data.lastName,
-        email: data.email,
+        email: data.email ? data.email : profileDetails.email,
         profilePicture: profileDetails.profilePicture,
       });
       setProfileDetails({

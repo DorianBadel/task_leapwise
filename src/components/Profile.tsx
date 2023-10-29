@@ -4,20 +4,17 @@ import Input, { ImageInput } from "./Input";
 import Card from "./Card";
 import "../styles/css/components/Profile.css";
 import LocalStorage, { profileDetailsT } from "../util/localStorage";
-import { useEffect } from "react";
 import { useAlert } from "../util/AlertProvider";
 import SaveIcon from "../assets/icons/Save.svg";
+import DataParser from "../util/DataParser";
+import { useEffect } from "react";
 
-const getBase64 = (file: any) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-    reader.readAsDataURL(file);
-  });
+type ProfileFormT = {
+  profileDetails: profileDetailsT;
+  setProfileDetails: (profileDetails: profileDetailsT) => void;
 };
 
-function Profile() {
+function Profile({ profileDetails, setProfileDetails }: ProfileFormT) {
   const {
     register,
     handleSubmit,
@@ -27,11 +24,8 @@ function Profile() {
   } = useForm();
   const alert = useAlert();
 
+  //initialize data
   useEffect(() => {
-    const profileDetails: profileDetailsT | undefined =
-      LocalStorage.getProfileDetails();
-    if (!profileDetails || profileDetails === undefined) return;
-
     setValue("firstName", profileDetails.name);
     setValue("lastName", profileDetails.surname);
     setValue("email", profileDetails.email);
@@ -39,14 +33,36 @@ function Profile() {
   }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    getBase64(data.photo[0]).then((base64) => {
+    if (data.photo[0].name) {
+      DataParser.getBase64(data.photo[0]).then((base64) => {
+        LocalStorage.saveProfileDetails({
+          name: data.firstName,
+          surname: data.lastName,
+          email: data.email,
+          profilePicture: base64 as string,
+        });
+        setProfileDetails({
+          name: data.firstName,
+          surname: data.lastName,
+          email: data.email,
+          profilePicture: base64 as string,
+        });
+      });
+    } else {
       LocalStorage.saveProfileDetails({
         name: data.firstName,
         surname: data.lastName,
         email: data.email,
-        profilePicture: base64 as string,
+        profilePicture: profileDetails.profilePicture,
       });
-    });
+      setProfileDetails({
+        name: data.firstName,
+        surname: data.lastName,
+        email: data.email,
+        profilePicture: profileDetails.profilePicture,
+      });
+    }
+
     alert.showAlert("Profile details saved!", <SaveIcon />);
   };
   return (

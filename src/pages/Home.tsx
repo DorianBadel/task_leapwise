@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getLinks, getSelectOptions, linkItemT } from "../util/data";
 import LinksPreview from "../components/LinksPreview";
 import Profile from "../components/Profile";
+import LocalStorage, { profileDetailsT } from "../util/localStorage";
 
 const filteredOptions = getSelectOptions();
 
@@ -17,6 +18,10 @@ const defaultLinkInput: linkItemT = {
 
 function Home() {
   const [links, setLinks] = useState<linkItemT[]>(getLinks());
+  const [profile, setProfile] = useState<profileDetailsT>(
+    LocalStorage.getProfileDetails()
+  );
+
   const [selectedTab, setSelectedTab] = useState(0);
 
   function addDefaultLink() {
@@ -24,12 +29,16 @@ function Home() {
   }
 
   function setSelectedLink(index: number, option: string) {
-    const newLinks = [...links];
-    newLinks[index] = {
+    const updatedLinks = [...links];
+    updatedLinks[index] = {
       platformName: option,
       link: option,
     };
-    setLinks(newLinks);
+    setLinks(updatedLinks);
+  }
+
+  function setProfileDetails(profileDetails: profileDetailsT) {
+    setProfile(profileDetails);
   }
 
   function removeSelectedLink(index: number) {
@@ -45,6 +54,7 @@ function Home() {
         <Card className="home__article-l">
           <PhonePreviewSVG />
           <LinksPreview
+            profileDetails={profile}
             platformNames={links.map((link) => link.platformName)}
           />
         </Card>
@@ -57,7 +67,10 @@ function Home() {
             setSelectedLinks={setSelectedLink}
           />
         ) : (
-          <Profile />
+          <Profile
+            profileDetails={profile}
+            setProfileDetails={setProfileDetails}
+          />
         )}
       </div>
     </div>

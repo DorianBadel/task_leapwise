@@ -21,9 +21,16 @@ const LocalStorage = {
   },
 
   //Profile Details
-  getProfileDetails: (): profileDetailsT | undefined => {
+  getProfileDetails: (): profileDetailsT => {
     const profileDetails = localStorage.getItem("profileDetails");
-    return (profileDetails && JSON.parse(profileDetails)) || undefined;
+    return (
+      (profileDetails && JSON.parse(profileDetails)) || {
+        name: "",
+        surname: "",
+        email: "",
+        profilePicture: "",
+      }
+    );
   },
   saveProfileDetails: (profileDetails: profileDetailsT) => {
     localStorage.setItem("profileDetails", JSON.stringify(profileDetails));

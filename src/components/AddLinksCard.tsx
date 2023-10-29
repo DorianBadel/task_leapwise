@@ -9,6 +9,11 @@ import { useAlert } from "../util/AlertProvider";
 import SaveIcon from "../assets/icons/Save.svg";
 import LinkCard from "./LinkCard";
 import { linkItemT, useLink } from "../util/DataProvider";
+import { DndContext, closestCenter, DragEndEvent } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 function AddLinksCard({}: {}) {
   const {
@@ -44,9 +49,24 @@ function AddLinksCard({}: {}) {
     alert.showAlert("Your changes have been successfully saved!", <SaveIcon />);
   };
 
-  // function handleDragEnd() {
-  //   console.log("dragged end");
-  // }
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (over === null) return;
+
+    console.log(active, over);
+    console.log("ind", active.id, over.id);
+
+    if (active.id !== over.id) {
+      const activeIndex = listOfSelectedLinks.findIndex(
+        (link) => link.id === active.id
+      );
+      const overIndex = listOfSelectedLinks.findIndex(
+        (link) => link.id === over.id
+      );
+
+      linkContext.swapLinks(activeIndex, overIndex);
+    }
+  }
 
   return (
     <Card className="home__article-r">
@@ -86,20 +106,30 @@ function AddLinksCard({}: {}) {
                 </div>
               </div>
             ) : (
-              <div className="link__container-wrapper">
-                <div className="link__container-wrapper-inner">
-                  {listOfSelectedLinks.map((link, key) => (
-                    <LinkCard
-                      index={key}
-                      key={key}
-                      link={link}
-                      unregister={unregister}
-                      register={register}
-                      errors={errors}
-                    />
-                  ))}
-                </div>
-              </div>
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={listOfSelectedLinks}
+                  strategy={verticalListSortingStrategy}
+                >
+                  <div className="link__container-wrapper">
+                    <div className="link__container-wrapper-inner">
+                      {listOfSelectedLinks.map((link, key) => (
+                        <LinkCard
+                          index={key}
+                          key={key}
+                          link={link}
+                          unregister={unregister}
+                          register={register}
+                          errors={errors}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </SortableContext>
+              </DndContext>
             )}
           </div>
         </div>

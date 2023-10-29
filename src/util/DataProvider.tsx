@@ -2,8 +2,7 @@ import { useContext, createContext, ReactNode, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { getFirstLinkName } from "./data";
 import LocalStorage from "./localStorage";
-//Write context methods for creating updating and deleting data
-//The for the linkItemT type
+import { arrayMove } from "@dnd-kit/sortable";
 
 export type linkItemT = {
   platformName: string;
@@ -17,6 +16,7 @@ interface LinkContextType {
   updateLink: (link: linkItemT) => void;
   deleteLink: (id: string) => void;
   returnSelectedLinkNames: () => string[];
+  swapLinks: (id1: number, id2: number) => void;
 }
 
 const LinkContext = createContext<LinkContextType | undefined>(undefined);
@@ -68,6 +68,11 @@ export const LinkProvider: React.FC<LinkProviderProps> = ({ children }) => {
     return links.map((link) => link.platformName);
   };
 
+  const swapLinks = (id1: number, id2: number) => {
+    console.log("swapLinks", id1, id2);
+    setLinks(arrayMove(links, id1, id2));
+  };
+
   return (
     <LinkContext.Provider
       value={{
@@ -76,6 +81,7 @@ export const LinkProvider: React.FC<LinkProviderProps> = ({ children }) => {
         updateLink,
         deleteLink,
         returnSelectedLinkNames,
+        swapLinks,
       }}
     >
       {children}

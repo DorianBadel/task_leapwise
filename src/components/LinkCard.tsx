@@ -10,6 +10,8 @@ import Input from "./Input";
 import LinksIcon from "../assets/icons/Links.svg";
 import { linkItemT, useLink } from "../util/DataProvider";
 import { getAllLinkNames } from "../util/data";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 type linkCardProps = {
   index: number;
@@ -26,12 +28,19 @@ function LinkCard({
   errors,
 }: linkCardProps) {
   const linkContext = useLink();
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: link.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   return (
-    <div className="link__card">
+    <div className="link__card" style={style} ref={setNodeRef}>
       <div className="link__container">
         <div className="link__card-header">
-          <div>
+          <div {...attributes} {...listeners}>
             <DragDropIcon />
             <span className="heading__text-s text-gray">
               Link #{`${index + 1}`}

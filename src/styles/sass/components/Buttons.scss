@@ -1,0 +1,201 @@
+@use "../Global.scss" as global;
+
+@mixin buttonStyle(
+  $border: none,
+  $shadow: none,
+  $disabled-color: global.$color-secondary,
+  $color: global.$color-white,
+  $background: global.$color-primary,
+  $hover-color: $color,
+  $hover-background: global.$color-primary-hover,
+  $active-background: none,
+  $ignore-disabled: false
+) {
+  border: $border;
+  color: $color;
+  background: $background;
+
+  @if $active-background != none {
+    &:not(:disabled) {
+      &:active,
+      &:focus {
+        background: $active-background;
+        color: $hover-color;
+      }
+      &:hover {
+        box-shadow: $shadow;
+        color: $hover-color;
+      }
+    }
+  } @else {
+    &:not(:disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        box-shadow: $shadow;
+        color: $hover-color;
+        background: $hover-background;
+      }
+    }
+  }
+
+  @if $ignore-disabled == false {
+    &:disabled {
+      background: $disabled-color;
+    }
+  }
+}
+
+.button-primary,
+.button-secondary,
+.button-tab,
+.button-link {
+  display: flex;
+  padding: 11px 27px;
+  align-items: center;
+  border-radius: 8px;
+  justify-content: center;
+
+  font-weight: global.$text-weight-medium;
+  font-size: global.$text-size-m;
+  font-family: global.$text-font-default;
+
+  transition: all 0.2s ease-in-out;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus,
+    &:active {
+      cursor: pointer;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.expandable {
+    @media (global.$screen-mobile) {
+      width: 100%;
+    }
+  }
+}
+
+.button {
+  &-primary {
+    @include buttonStyle(
+      $shadow: 0px 0px 32px 0px global.$color-primary-transparent
+    );
+  }
+
+  &-secondary {
+    @include buttonStyle(
+      $border: 1px solid global.$color-primary,
+      $color: global.$color-primary,
+      $background: global.$color-light-grey,
+      $shadow: 0px 0px 32px 0px global.$color-primary-transparent
+    );
+  }
+
+  &-link {
+    @include buttonStyle(
+      $shadow: 0px 0px 32px 0px global.$color-primary-transparent,
+      $ignore-disabled: true
+    );
+    display: flex;
+    align-self: stretch;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 11px 16px;
+    width: 100%;
+    height: 44px;
+
+    & span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  &__text {
+    &-alternative + & {
+      @media (global.$screen-mobile) {
+        display: none;
+      }
+    }
+    &-alternative {
+      display: none;
+
+      @media (global.$screen-mobile) {
+        display: block;
+      }
+    }
+  }
+}
+
+//TODO move this to TabGroup.scss
+.button-tab {
+  @include buttonStyle(
+    $color: global.$color-grey,
+    $background: global.$color-white,
+    $hover-color: global.$color-primary,
+    $active-background: global.$color-primary-hover
+  );
+
+  &-selected {
+    color: global.$color-primary;
+    background: global.$color-primary-hover;
+  }
+
+  &:has(.tab__icon) {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      fill: currentColor;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.icon {
+  &-github {
+    background: #1a1a1a;
+  }
+  &-twitter {
+    background: #43b7e9;
+  }
+  &-linkedin {
+    background: #2d68ff;
+  }
+  &-youtube {
+    background: #ee3939;
+  }
+  &-facebook {
+    background: #2442ac;
+  }
+  &-twitch {
+    background: #ee3fc8;
+  }
+  &-dev_to {
+    background: #333;
+  }
+  &-codewars {
+    background: #8a1a50;
+  }
+  &-freecodecamp {
+    background: #302267;
+  }
+  &-gitlab {
+    background: #eb4925;
+  }
+  &-hashnode {
+    background: #0330d1;
+  }
+  &-stackoverflow {
+    background: #ec7100;
+  }
+}

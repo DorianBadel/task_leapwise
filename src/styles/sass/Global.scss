@@ -1,0 +1,131 @@
+// Colors
+$color-primary: #633cff;
+$color-primary-transparent: rgba(99, 60, 255, 0.25);
+$color-primary-hover: #beadff;
+$color-secondary: #efebff;
+$color-dark-grey: #333;
+$color-grey: #737373;
+$color-borders: #d9d9d9;
+$color-light-grey: #fafafa;
+$color-white: #fff;
+$color-red: #ff3939;
+$color-red-transparent: rgba(255, 57, 57, 0.25);
+
+// Typography
+$text-font-default: "Instrument Sans Variable", sans-serif;
+$text-weight-bold: 700;
+$text-weight-medium: 600;
+$text-weight-regular: 400;
+$text-size-xl: 64px;
+$text-size-logo: 40px;
+$text-size-l: 32px;
+$text-size-m: 16px;
+$text-size-s: 12px;
+$text-line-height-default: 150%;
+$text-line-height-small: 100%;
+
+@mixin typography(
+  $font-weight,
+  $font-size,
+  $line-height: $text-line-height-default,
+  $color: $color-dark-grey,
+  $font-family: $text-font-default
+) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color-dark-grey; //Standard for now
+}
+
+.heading__text {
+  &-l {
+    @include typography(
+      $text-weight-bold,
+      $text-size-xl,
+      $text-line-height-small
+    );
+  }
+  &-m {
+    @include typography($text-weight-bold, $text-size-l);
+  }
+  &-s {
+    @include typography($text-weight-bold, $text-size-m);
+  }
+}
+
+.body__text {
+  &-m {
+    @include typography($text-weight-regular, $text-size-m);
+  }
+  &-s {
+    @include typography($text-weight-regular, $text-size-s);
+  }
+}
+
+.logo__text {
+  @include typography($text-weight-bold, $text-size-logo);
+}
+
+// Breakpoints
+$screen-tablet: "max-width: 1443px";
+$screen-mobile: "max-width: 767px";
+
+body {
+  background: $color-light-grey;
+  margin: 0px;
+
+  @media ($screen-mobile) {
+    background: $color-white;
+  }
+}
+
+// Logotype
+.logotype {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: $color-primary;
+
+  &__text {
+    @include typography($text-weight-bold, $text-size-logo);
+
+    &:not(.fixed) {
+      @media ($screen-tablet) {
+        font-size: 26px;
+      }
+      @media ($screen-mobile) {
+        display: none;
+      }
+    }
+  }
+}
+
+//modifiers
+.text-gray {
+  color: $color-grey;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-link {
+  color: $color-primary;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    color: $color-primary-hover;
+  }
+
+  &-secondary {
+    color: $color-grey;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      color: $color-primary;
+    }
+  }
+}

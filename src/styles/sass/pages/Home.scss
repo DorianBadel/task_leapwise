@@ -1,0 +1,170 @@
+@use "../Global.scss" as global;
+
+.home {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home__grid {
+  height: 100%;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 5fr 8fr;
+  grid-template-rows: 10% 80%;
+  gap: 24px;
+
+  @media (global.$screen-tablet) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 80%;
+  }
+}
+
+.home__header {
+  grid-column: 1/3;
+  width: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 24px;
+  align-items: center;
+
+  @media (global.$screen-tablet) {
+    padding: 16px 16px 16px 24px;
+  }
+}
+
+.article__right-form {
+  flex: 1;
+}
+
+.home__article {
+  &-l,
+  &-r {
+    width: auto;
+  }
+
+  &-l {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (global.$screen-tablet) {
+      display: none;
+    }
+  }
+
+  &-r {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px;
+    gap: 0px;
+  }
+}
+
+.right__container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 40px;
+}
+
+.right__title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.right__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &-links {
+    background-color: global.$color-light-grey;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  &-instructions {
+    width: 448px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+}
+
+.right__footer {
+  display: flex;
+  justify-content: end;
+  border-top: 1px solid global.$color-borders;
+  padding: 24px 40px;
+}
+
+.link__card {
+  &-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+.link__container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  background-color: global.$color-light-grey;
+
+  &-wrapper {
+    overflow-y: scroll;
+    scrollbar-gutter: 25px;
+
+    &::-webkit-scrollbar {
+      height: 24px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: global.$color-borders;
+      border-radius: 20px;
+      border: 6px solid transparent;
+      background-clip: content-box;
+    }
+    flex-grow: 0;
+    height: 380px;
+
+    &-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+}
+
+.link__input-text {
+  width: 100% !important;
+}
+
+.link {
+  text-decoration: none;
+}

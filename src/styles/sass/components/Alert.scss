@@ -1,0 +1,20 @@
+@use "../Global.scss" as global;
+
+.alert {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 40px;
+  padding: 16px 24px;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  background-color: global.$color-dark-grey;
+  border-radius: 12px;
+
+  font-family: global.$text-font-default;
+  font-size: global.$text-size-m;
+  line-height: global.$text-line-height-default;
+  color: global.$color-white;
+  font-weight: global.$text-weight-medium;
+}

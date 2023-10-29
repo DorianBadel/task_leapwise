@@ -185,6 +185,19 @@ body {
   align-items: center;
   gap: 8px;
 }
+@media (max-width: 767px) {
+  .button__text-alternative + .button__text {
+    display: none;
+  }
+}
+.button__text-alternative {
+  display: none;
+}
+@media (max-width: 767px) {
+  .button__text-alternative {
+    display: block;
+  }
+}
 
 .button-tab {
   border: none;

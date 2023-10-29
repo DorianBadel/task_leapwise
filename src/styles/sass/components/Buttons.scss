@@ -110,6 +110,21 @@
       gap: 8px;
     }
   }
+
+  &__text {
+    &-alternative + & {
+      @media (global.$screen-mobile) {
+        display: none;
+      }
+    }
+    &-alternative {
+      display: none;
+
+      @media (global.$screen-mobile) {
+        display: block;
+      }
+    }
+  }
 }
 
 //TODO move this to TabGroup.scss

@@ -6,6 +6,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   link?: boolean;
   className?: string;
   children: ReactNode;
+  textAlternative?: ReactNode;
 };
 
 type ButtonOnClickProps = ButtonProps & {
@@ -18,6 +19,7 @@ function Button({
   onClick,
   className,
   children,
+  textAlternative,
   ...other
 }: ButtonProps | ButtonOnClickProps) {
   return (
@@ -28,7 +30,10 @@ function Button({
       onClick={onClick}
       {...other}
     >
-      {children}
+      {textAlternative && (
+        <span className="button__text-alternative">{textAlternative}</span>
+      )}
+      <span className="button__text">{children}</span>
     </button>
   );
 }

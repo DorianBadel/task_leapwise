@@ -12,8 +12,8 @@ function Select({
 }: {
   options: string[];
   selectedOption: string;
-  onSelect: (index: number, arg: string) => void;
   index: number;
+  onSelect: (option: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,7 +50,7 @@ function Select({
               <a
                 key={key}
                 onClick={() => {
-                  onSelect(index, option);
+                  onSelect(option);
                   setIsOpen(false);
                 }}
               >
